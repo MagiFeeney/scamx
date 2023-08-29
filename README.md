@@ -153,8 +153,9 @@ Visit mode also applies to the minibuffer, which means you can move back-and-for
 * You can then use `r` to repeat those commands if needed. 
 
 ## Issues and Plans
-In visit mode, it may occasionally not handle the buffer `*Messages*` properly when navigating previous or next buffer.
-
+- In visit mode, it may occasionally not handle the buffer `*Messages*` properly when navigating previous or next buffer.
+- Command conflicts would be observed in one-key oriented mode i.e. dired-mode, image-mode and magit-mode etc.
+- 
 ### TODO list
 - Add more functions to convert mode (i.e. up-list, kill-sexp).
 - Integrate with multiple-cursors.

@@ -47,7 +47,7 @@ There are four major modes i.e. normal, X, convert and visit mode. The normal mo
 * `x [` backward page
 * `x ]` forward page
 * `x *` calculator
-* `x b` switch to buffer (recommend using consult-buffer to utilize the minibuffer feature)
+* `x b` switch to buffer (recommend using vertico + consult-buffer to utilize the minibuffer feature)
 * `x k` kill buffer
 * `x i` insert file
 * `x j` dired jump
@@ -122,7 +122,7 @@ There are four major modes i.e. normal, X, convert and visit mode. The normal mo
 * `s` isearch forward (recommend using swiper to utilize the minibuffer feature)
 * `y` yank
 * `q` quit current buffer
-* `Q` goto line (recommend using consult-goto-line to utilize the minibuffer feature)
+* `Q` goto line (recommend using vertico + consult-goto-line to utilize the minibuffer feature)
 * `k` kill line at point or kill region if selected
 * `t` select to char
 * `u` undo

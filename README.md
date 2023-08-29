@@ -31,7 +31,7 @@ There are four major modes i.e. normal, X, convert and visit mode. The normal mo
 * `x f` Open a file.
 * `x w` write file
 * `x s` save buffer
-* `x c` Save and leave
+* `x c` Save and close emacs
 * `x z` minimize window
 * `x h` select whole buffer
 * `x 0` delete current window
@@ -94,7 +94,9 @@ There are four major modes i.e. normal, X, convert and visit mode. The normal mo
 * `M` maximize window
 * `+` bold enlarge window horizontally
 * `-` bold shrink window horizontally
-
+* If you have installed package `ace-window`, then you can further have:
+  * `w` swap window
+  * `t` select window
 ### Normal mode
 * `x` X mode
 * `c` convert mode
@@ -138,4 +140,23 @@ There are four major modes i.e. normal, X, convert and visit mode. The normal mo
 * `gg` back to normal mode
 
 ### Minibuffer
-When enter into the minibuffer, it is by default at the insert mode. Once you have finished typing, you can call `gg` to leave insert mode, then use the regular navigation commands such as `n` or `p` to select the candidates. If you finished selection, you can use `<return>` to abort the minibuffer, or just use `g` to leave if it needs to be stopped.
+When enter into the minibuffer, it is by default at the insert mode. Once you have finished typing, you can call `gg` to leave insert mode, then use the regular navigation commands such as `n` or `p` to select the candidates. If you have finished selection, you can use `<return>` to abort the minibuffer, or just use `g` to leave if it needs to be stopped.
+
+Visit mode also applies to the minibuffer, which means you can move back-and-forth between buffers and the minibuffer.
+
+### Mark
+* You can hit twice to set mark, and then use `x SPC` to return back to the position.
+* The convert mode can be invoked on top of the current mark, use whatever commands needed, then revert back to normal mode while keeping the mark.
+
+### Negative argument
+* `-` can be combined with directional commands, i.e. `- t` select backward to, `- h` mark backward line.
+* You can then use `r` to repeat those commands if needed. 
+
+## Issues and Plans
+In visit mode, it may occasionally not handle the buffer `*Messages*` properly when navigating previous or next buffer.
+
+### TODO list
+- Add more functions to convert mode (i.e. up-list, kill-sexp).
+- Integrate with multiple-cursors.
+- Merge meow of things command series into generalized zap command in a dwim style.
+- Allow one command in the normal mode be excuted in the convert mode (like `ctrl-o` in vim).

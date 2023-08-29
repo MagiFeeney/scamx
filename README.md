@@ -28,7 +28,7 @@ There are four major modes i.e. normal, X, convert and visit mode. The normal mo
 
 ### X mode
 
-* `x f` Open a file.
+* `x f` open a file.
 * `x w` write file
 * `x s` save buffer
 * `x c` Save and close emacs

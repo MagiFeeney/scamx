@@ -145,7 +145,7 @@ When enter into the minibuffer, it is by default at the insert mode. Once you ha
 Visit mode also applies to the minibuffer, which means you can move back-and-forth between buffers and the minibuffer.
 
 ### Mark
-* You can hit twice to set mark, and then use `x SPC` to return back to the position.
+* You can hit `SPC` twice to set mark, and then use `x SPC` to return back to the position.
 * The convert mode can be invoked on top of the current mark, use whatever commands needed, then revert back to normal mode while keeping the mark.
 
 ### Negative argument

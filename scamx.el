@@ -2,11 +2,7 @@
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
   (meow-motion-overwrite-define-key
    '("n" . next-line)
-   '("p" . previous-line)
-   '("<escape>" . ignore))
-  (meow-leader-define-key
-   '("/" . meow-keypad-describe-key)
-   '("?" . meow-cheatsheet))
+   '("p" . previous-line))
   (meow-convert-define-key
    '("g" . meow-convert-exit)
    '("x" . scamx-X-keymap)
@@ -114,8 +110,7 @@
    '("l" . recenter-top-bottom)
    '("\\" . delete-horizontal-space)
    '("=" . mark-word)
-   '("SPC" . set-mark-command)
-   '("<escape>" . ignore)))
+   '("SPC" . set-mark-command)))
 
 (use-package meow
   :config

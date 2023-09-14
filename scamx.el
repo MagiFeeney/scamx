@@ -109,6 +109,7 @@
    '("/" . undo-redo)
    '("h" . meow-line)
    '("z" . zap-to-char)
+   '("Z" . zap-up-to-char)   
    '("r" . repeat)
    '("l" . recenter-top-bottom)
    '("\\" . delete-horizontal-space)

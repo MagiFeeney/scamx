@@ -13,6 +13,7 @@ mv scamx ~/.emacs.d
 * Load all files by order in your `.emacs` or `init.el`:
 ``` elisp
 (load-file "~/.emacs.d/scamx/function.el")
+(load-file "~/.emacs.d/scamx/command.el")
 (load-file "~/.emacs.d/scamx/minibuffer.el")
 (load-file "~/.emacs.d/scamx/X.el")
 (load-file "~/.emacs.d/scamx/convert.el")
@@ -58,7 +59,6 @@ There are four major modes i.e. normal, X, convert and visit mode. The normal mo
 * `x n` duplicate line
 
 ### Convert mode
-
 * `g` back to normal mode
 * `n` forward paragraph
 * `p` backward paragraph
@@ -68,14 +68,23 @@ There are four major modes i.e. normal, X, convert and visit mode. The normal mo
 * `D` backward kill word
 * `e` forward sentence
 * `a` backward sentence
-* `k` kill sentence
-* `K` backward kill sentence
+* `k` kill paragraph or kill region if selected
 * `h` mark paragraph
-* `u` undo
+* `w` copy
 * `y` yank
-   
-### Visit mode
+* `u` undo
+* `/` redo
+* `a` backward kill sexp
+* `e` kill sexp
+* `(` backward list
+* `)` forward list
+* `[` backward sexp
+* `]` forward sexp
+* `{` backward up list
+* `}` up list
+* `=` mark sexp
 
+### Visit mode
 * `g` back to normal mode
 * `l` last buffer
 * `n` next buffer
@@ -97,44 +106,49 @@ There are four major modes i.e. normal, X, convert and visit mode. The normal mo
 * If you have installed package `ace-window`, then you can further have:
   * `w` swap window
   * `t` select window
+  
 ### Normal mode
 * `x` X mode
 * `c` convert mode
 * `v` visit mode
-* `,` meow inner of thing
-* `.` meow bounds of thing
-* `[` meow beginning of thing
-* `]` meow end of thing
+* `g` cancel selection or exit minibuffer
 * `a` move beginning of line
 * `e` move end of line
 * `d` delete forward one char
 * `D` delete backward one char
-* `g` cancel selection or exit minibuffer
-* `b` backward char
 * `i` insert
 * `o` open below
 * `O` open above
 * `n` next line
 * `p` previous line
 * `f` forward char
+* `b` backward char
 * `j` newline (a.k.a \<return\>)
 * `m` back to indentation
 * `s` isearch forward (recommend using swiper to utilize the minibuffer feature)
-* `y` yank
-* `q` quit current buffer
-* `Q` goto line (recommend using vertico + consult-goto-line to utilize the minibuffer feature)
 * `k` kill line at point or kill region if selected
-* `t` select to char
-* `u` undo
-* `/` redo
 * `h` mark line
 * `w` copy
+* `y` yank
+* `u` undo
+* `/` redo
+* `t` select to char
 * `z` zap to char
+* `Z` zap up to char
+* `q` quit current buffer
+* `Q` goto line (recommend using vertico + consult-goto-line to utilize the minibuffer feature)
 * `r` repeat
 * `l` recenter top bottom
 * `\` delete horizontal space
 * `=` mark word
 * `SPC` set mark command
+* `!` shell command
+* `$` ispell word
+* `%` query replace
+* `,` meow inner of thing
+* `.` meow bounds of thing
+* `[` meow beginning of thing
+* `]` meow end of thing
 
 ### Insert mode
 * `gg` back to normal mode
@@ -157,7 +171,7 @@ Visit mode also applies to the minibuffer, which means you can move back-and-for
 - Command conflicts would be observed in one-key oriented mode i.e. dired-mode, image-mode and magit-mode etc.
 
 ### TODO list
-- Add more functions to convert mode (i.e. up-list, kill-sexp).
+- [X] Add more functions to convert mode (i.e. up-list, kill-sexp).
 - Integrate with multiple-cursors.
 - Merge meow of things command series into generalized zap command in a dwim style.
 - Allow one command in the normal mode be excuted in the convert mode (like `ctrl-o` in vim).

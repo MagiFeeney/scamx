@@ -38,7 +38,7 @@
    '("/" . undo-redo)
    '("y" . yank)
    '("w" . kill-ring-save)
-   ;; '("s" . suspend)   ; TODO: allow a command in the normal mode to be excuted in convert mode without leaving the convert mode
+   ;; '("s" . suspend)   ; TODO: allow a command in the normal mode to be excuted in the convert mode without leaving the convert mode
    '("SPC" . set-mark-command))
   (meow-visit-define-key
    '("g" . meow-visit-exit-all)

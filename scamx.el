@@ -33,7 +33,7 @@
    '("a" . backward-kill-sexp)
    '("k" . scamx-kill-paragraph)
    '("h" . mark-paragraph)
-   '("m" . mark-sexp)
+   '("=" . mark-sexp)
    '("u" . undo)
    '("/" . undo-redo)
    '("y" . yank)

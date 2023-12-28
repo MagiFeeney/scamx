@@ -6,3 +6,5 @@
         (message "Quit temporary normal mode")
         (meow--switch-state 'motion))
     (meow--switch-state 'insert)))
+
+(provide 'scamx-insert)

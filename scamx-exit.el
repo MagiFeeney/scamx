@@ -1,3 +1,4 @@
+;; (setq meow-two-char-escape-sequence '("gn" "gp" "gf" "gb"))
 (setq meow-two-char-escape-sequence "gg")
 (setq meow-two-char-escape-delay 0.3)
 
@@ -24,3 +25,5 @@
 
 (define-key meow-insert-state-keymap (substring meow-two-char-escape-sequence 0 1)
   #'meow-two-char-exit-insert-state)
+
+(provide 'scamx-exit)

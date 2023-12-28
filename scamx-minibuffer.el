@@ -22,3 +22,5 @@
 
 ;; Apply the patch after meow is activated
 (add-hook 'meow-global-mode-hook 'my/meow-setup-extra)
+
+(provide 'scamx-minibuffer)

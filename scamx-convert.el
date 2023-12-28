@@ -20,7 +20,8 @@
 (meow-define-state convert
   "Meow CONVERT state minor mode."
   :lighter " [C]"
-  :keymap meow-convert-state-keymap)
+  :keymap meow-convert-state-keymap
+  :cursor meow-convert-cursor)
 
 (defun meow-convert-define-key (&rest keybinds)
   (apply #'meow-define-keys 'convert keybinds))
@@ -48,3 +49,5 @@
         (message "Quit temporary normal mode")
         (meow--switch-state 'motion))
     (meow--switch-state 'convert)))
+
+(provide 'scamx-convert)

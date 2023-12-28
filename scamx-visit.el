@@ -20,7 +20,8 @@
 (meow-define-state visit
   "Meow VISTIG state minor mode."
   :lighter " [V]"
-  :keymap meow-visit-state-keymap)
+  :keymap meow-visit-state-keymap
+  :cursor meow-visit-cursor)
 
 ;; (add-hook 'find-file-hook #'meow--enable-visit-state)
 (add-hook 'change-major-mode-hook #'meow--enable-visit-state)
@@ -73,3 +74,5 @@
   (dolist (buffer (buffer-list))
     (with-current-buffer buffer
       (meow--visit))))
+
+(provide 'scamx-visit)

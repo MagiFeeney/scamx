@@ -1,30 +1,24 @@
 # An experimental modal editing
 
-This is my first attempt that designs a modularized, multi-layer functionalized and minimal-effort modal editing mechanism. It combines with default keybindings of emacs, but without modifier keys and only some necessary commands are binded. This is neither a package nor a under-development project.
+This is my first attempt that designs a modularized, multi-layer functionalized and minimal-effort modal editing mechanism. It combines with default keybindings of emacs, but without modifier keys and only some necessary commands are binded.
 
 
 ## How to Use
 * Install `meow` with `package-install`
 * Copy the file to your `.emacs.d` directory:
 ```
-git clone https://github.com/MagiFeeney/scamx.git
-mv scamx ~/.emacs.d
+git clone https://github.com/MagiFeeney/scamx.git ~/.emacs.d
 ```
-* Load all files by order in your `.emacs` or `init.el`:
+* Load the package with `use-package`:
 ``` elisp
-(load-file "~/.emacs.d/scamx/function.el")
-(load-file "~/.emacs.d/scamx/command.el")
-(load-file "~/.emacs.d/scamx/minibuffer.el")
-(load-file "~/.emacs.d/scamx/X.el")
-(load-file "~/.emacs.d/scamx/convert.el")
-(load-file "~/.emacs.d/scamx/visit.el")
-(load-file "~/.emacs.d/scamx/scamx.el")
-(load-file "~/.emacs.d/scamx/insert.el")
-(load-file "~/.emacs.d/scamx/exit.el")
+(use-package scamx
+  :load-path "~/.emacs.d/scamx/"
+  :config
+  (electric-pair-mode))
 ```
 
 ## Modes
-There are four major modes i.e. normal, X, convert and visit mode. The normal mode serves as a base for basic navigation and modes invoking. And X mode is sequence commands with a prefix "x". Convert mode "c" is bolder compared to normal mode, and visit mode "v" navigates, views and manages buffer or window.
+There are four major modes i.e. normal, X, convert and visit mode and some minor modes into which such as isearch wrapped. The normal mode serves as a base for basic navigation and modes invoking. And X mode is sequence commands with a prefix "x". Convert mode "c" is bolder compared to normal mode, and visit mode "v" navigates, views and manages buffer or window.
 
 
 ### X mode
@@ -57,6 +51,10 @@ There are four major modes i.e. normal, X, convert and visit mode. The normal mo
 * `x '` comment or uncomment region
 * `x SPC` pop to mark command
 * `x n` duplicate line
+* `x ESC` repeat-complex-command
+* `x .` eval-last-sexp
+* `x :` eval-expression
+* `x =` text-scale-adjust
 
 ### Convert mode
 * `g` back to normal mode
@@ -64,12 +62,13 @@ There are four major modes i.e. normal, X, convert and visit mode. The normal mo
 * `p` backward paragraph
 * `f` forward word
 * `b` backward word
-* `d` kill word
-* `D` backward kill word
-* `e` forward sentence
-* `a` backward sentence
+* `d` kill word or delete region if selected
+* `backspace` backward kill word or delete region if selected
+* `e` kill sexp
+* `a` backward kill sexp
 * `k` kill paragraph or kill region if selected
-* `h` mark paragraph
+* `h` mark sexp
+* `l` kill whole line
 * `w` copy
 * `y` yank
 * `u` undo
@@ -103,8 +102,8 @@ There are four major modes i.e. normal, X, convert and visit mode. The normal mo
 * `M` maximize window
 * `+` bold enlarge window horizontally
 * `-` bold shrink window horizontally
+* `w` swap window
 * If you have installed package `ace-window`, then you can further have:
-  * `w` swap window
   * `t` select window
   
 ### Normal mode
@@ -114,8 +113,8 @@ There are four major modes i.e. normal, X, convert and visit mode. The normal mo
 * `g` cancel selection or exit minibuffer
 * `a` move beginning of line
 * `e` move end of line
-* `d` delete forward one char
-* `D` delete backward one char
+* `d` delete forward one char or delete region if selected
+* `backspace` delete backward one char or delete region if selected
 * `i` insert
 * `o` open below
 * `O` open above
@@ -125,7 +124,7 @@ There are four major modes i.e. normal, X, convert and visit mode. The normal mo
 * `b` backward char
 * `j` newline (a.k.a \<return\>)
 * `m` back to indentation
-* `s` isearch forward (recommend using swiper to utilize the minibuffer feature)
+* `s` isearch forward minor mode
 * `k` kill line at point or kill region if selected
 * `h` mark line
 * `w` copy
@@ -136,7 +135,7 @@ There are four major modes i.e. normal, X, convert and visit mode. The normal mo
 * `z` zap to char
 * `Z` zap up to char
 * `q` quit current buffer
-* `Q` goto line (recommend using vertico + consult-goto-line to utilize the minibuffer feature)
+* `;` goto line
 * `r` repeat
 * `l` recenter top bottom
 * `\` delete horizontal space
@@ -157,6 +156,11 @@ There are four major modes i.e. normal, X, convert and visit mode. The normal mo
 When enter into the minibuffer, it is by default at the insert mode. Once you have finished typing, you can call `gg` to leave insert mode, then use the regular navigation commands such as `n` or `p` to select the candidates. If you have finished selection, you can use `<return>` to abort the minibuffer, or just use `g` to leave if it needs to be stopped.
 
 Visit mode also applies to the minibuffer, which means you can move back-and-forth between buffers and the minibuffer.
+
+### Isearch minor mode
+Isearch forward is wrapped into an additional layer. Once it is invoked with the `s` key, it prompts at the minibuffer to enter the string to be searched. Hitting `return` then marks the finish of the input process. After that, you can use the familiar navigation commands `n` or `p` to loop through all candidate in the buffer. When `s` is pressed again, you can enter a new string to search. Otherwise, you can go back to the normal state with `g`. You can also simply leave the input string blank followed by the `return`. With `g`, you can directly leave.
+
+Please check the full set up in `scamx-anchor.el`.
 
 ### Mark
 * You can hit `SPC` twice to set mark, and then use `x SPC` to return back to the position.

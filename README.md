@@ -1,7 +1,6 @@
-# An experimental modal editing
+# Scamx: A Minimalist Modal Editing Mechanism for Emacs
 
-This is my first attempt that designs a modularized, multi-layer functionalized and minimal-effort modal editing mechanism. It combines with default keybindings of emacs, but without modifier keys and only some necessary commands are binded.
-
+Scamx is an experimental modal editing mechanism designed for Emacs. It introduces a modularized, multi-layered approach that integrates seamlessly with default Emacs keybindings, avoiding modifier keys and focusing solely on essential commands. Scamx is crafted to deliver a streamlined and functional modal editing experience within the Emacs environment. As mathematical principles dictate, only mapping matters and those powerful functions are just out there.
 
 ## How to Use
 * Install `meow` with `package-install`
@@ -18,7 +17,7 @@ git clone https://github.com/MagiFeeney/scamx.git ~/.emacs.d
 ```
 
 ## Modes
-There are four major modes i.e. normal, X, convert and visit mode and some minor modes into which such as isearch wrapped. The normal mode serves as a base for basic navigation and modes invoking. And X mode is sequence commands with a prefix "x". Convert mode "c" is bolder compared to normal mode, and visit mode "v" navigates, views and manages buffer or window.
+There are four major modes: normal, X, convert, and visit, where some minor modes, such as isearch, are wrapped into them. The normal mode serves as a base for basic navigation and modes invoking. And X mode is sequence commands with a prefix "x". Convert mode "c" is bolder compared to normal mode, and visit mode "v" navigates, views and manages buffer or window.
 
 
 ### X mode

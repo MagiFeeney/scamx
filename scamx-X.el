@@ -33,5 +33,7 @@
 (define-key scamx-X-keymap (kbd ".") 'eval-last-sexp)
 (define-key scamx-X-keymap (kbd ":") 'eval-expression)
 (define-key scamx-X-keymap (kbd "=") 'text-scale-adjust)
+(define-key scamx-X-keymap (kbd "<mouse-1>") 'previous-buffer)
+(define-key scamx-X-keymap (kbd "<mouse-3>") 'next-buffer)
 
 (provide 'scamx-X)

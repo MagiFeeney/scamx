@@ -58,7 +58,7 @@
         (meow-visit-exit)))))
 
 (defun meow--visit ()
-  "Move to the start of selection, switch to INSERT state."
+  "Move to the start of selection, switch to VISIT state."
   (interactive)
   (if meow--temp-normal
       (progn

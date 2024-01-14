@@ -60,7 +60,7 @@
     (meow--switch-state 'normal))))
 
 (defun meow-isearch ()
-  "Move to the start of selection, switch to INSERT state."
+  "Move to the start of selection, switch to SEARCH state."
   (interactive)
   (if meow--temp-normal
       (progn

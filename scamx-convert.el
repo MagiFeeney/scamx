@@ -42,7 +42,7 @@
     (meow--switch-state 'normal))))
 
 (defun meow-convert ()
-  "Move to the start of selection, switch to INSERT state."
+  "Move to the start of selection, switch to CONVERT state."
   (interactive)
   (if meow--temp-normal
       (progn

@@ -1,6 +1,8 @@
 (defun meow-setup ()
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
   (meow-motion-overwrite-define-key
+   '("x" . scamx-X-keymap)
+   '("g" . meow-motion-exit)
    '("n" . next-line)
    '("p" . previous-line)
    '("f" . forward-char)
@@ -88,7 +90,8 @@
    '("x" . scamx-X-keymap)
    '("c" . meow-convert)
    '("v" . meow-visit-all)
-   '("s" . meow-isearch)   
+   '("s" . meow-isearch)
+   '("`" . meow-motion)   
    '("1" . meow-digit-argument)
    '("2" . meow-digit-argument)
    '("3" . meow-digit-argument)

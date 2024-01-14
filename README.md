@@ -50,10 +50,12 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `x '` comment or uncomment region
 * `x SPC` pop to mark command
 * `x n` duplicate line
-* `x ESC` repeat-complex-command
-* `x .` eval-last-sexp
-* `x :` eval-expression
-* `x =` text-scale-adjust
+* `x ESC` repeat complex command
+* `x .` eval last sexp
+* `x :` eval expression
+* `x =` adjust text scale
+* `x <mouse-1>` previous buffer
+* `x <mouse-3>` next buffer
 
 ### Convert mode
 * `g` back to normal mode
@@ -170,8 +172,9 @@ Please check the full set up in `scamx-anchor.el`.
 * You can then use `r` to repeat those commands if needed. 
 
 ## Issues and Plans
-- In visit mode, it may occasionally not handle the buffer `*Messages*` properly when navigating previous or next buffer.
+- In visit mode, it may occasionally not handle the buffer `*Messages*` properly when navigating previous or next buffer at first attempt.
 - Command conflicts would be observed in one-key oriented mode i.e. dired-mode, image-mode and magit-mode etc.
+  - Now you can switch between those modes and scamx, by entering into the normal mode with `g` and reverting back with `` ` ``. When `g` conflicts with `revert buffer`, you can alternatively use `r` in visit mode.
 
 ### TODO list
 - [X] Add more functions to convert mode (i.e. up-list, kill-sexp).

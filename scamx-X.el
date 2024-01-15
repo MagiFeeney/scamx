@@ -35,6 +35,7 @@
 (define-key scamx-X-keymap (kbd "=") 'text-scale-adjust)
 (define-key scamx-X-keymap (kbd "<mouse-1>") 'previous-buffer)
 (define-key scamx-X-keymap (kbd "<mouse-3>") 'next-buffer)
-;; (define-key scamx-X-keymap (kbd "g") 'magit-status)
+;; (define-key scamx-X-keymap (kbd "v") 'magit-status)
+(define-key scamx-X-keymap (kbd "m") 'compose-mail)
 
 (provide 'scamx-X)

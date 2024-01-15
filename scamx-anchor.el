@@ -1,12 +1,9 @@
 (defun meow-setup ()
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
-  (meow-motion-overwrite-define-key
-   '("x" . scamx-X-keymap)
-   '("g" . meow-motion-exit)
+  (meow-motion-overwrite-define-key	; minimal overwrite to not interfere original commands
+   '("g" . meow-motion-exit)   
    '("n" . next-line)
-   '("p" . previous-line)
-   '("f" . forward-char)
-   '("b" . backward-char))
+   '("p" . previous-line))
   (meow-convert-define-key
    '("g" . meow-convert-exit)
    '("x" . scamx-X-keymap)

@@ -164,7 +164,7 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `? p` describe package
 * `? t` tutorial
 * `? d` debugging tutorial
-* `? e` view *messages* buffer
+* `? e` view \*messages\* buffer
 * `? r` find manual
 * `? i` info overview
 * `? s` search for command

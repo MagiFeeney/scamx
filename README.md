@@ -6,7 +6,7 @@ Scamx is an experimental modal editing mechanism designed for Emacs. It introduc
 * Install `meow` with `package-install`
 * Copy the file to your `.emacs.d` directory:
 ```
-git clone https://github.com/MagiFeeney/scamx.git ~/.emacs.d
+git clone https://github.com/MagiFeeney/scamx.git && mv scamx ~/.emacs.d
 ```
 * Load the package with `use-package`:
 ``` elisp

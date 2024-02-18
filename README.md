@@ -48,7 +48,7 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `x j` dired jump
 * `x x` exchange point and mark
 * `x ;` comment line
-* `x ` comment or uncomment region
+* `x '` comment or uncomment region
 * `x SPC` pop to mark command
 * `x n` duplicate line
 * `x ESC` repeat complex command

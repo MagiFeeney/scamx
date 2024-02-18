@@ -41,13 +41,14 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `x [` backward page
 * `x ]` forward page
 * `x *` calculator
-* `x b` switch to buffer (recommend using vertico + consult-buffer to utilize the minibuffer feature)
+* `x b` switch to buffer
+* `x l` list all buffers
 * `x k` kill buffer
 * `x i` insert file
 * `x j` dired jump
 * `x x` exchange point and mark
 * `x ;` comment line
-* `x '` comment or uncomment region
+* `x ` comment or uncomment region
 * `x SPC` pop to mark command
 * `x n` duplicate line
 * `x ESC` repeat complex command
@@ -152,6 +153,27 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 
 ### Insert mode
 * `gg` back to normal mode
+
+### Help mode (Distilled)
+* `? k` describe key
+* `? c` describe key briefly
+* `? f` describe function
+* `? m` describe mode
+* `? \\` describe input method
+* `? b` describe bindings
+* `? p` describe package
+* `? t` tutorial
+* `? d` debugging tutorial
+* `? e` view *messages* buffer
+* `? r` find manual
+* `? i` info overview
+* `? s` search for command
+* `? v` search by keyword
+* `? C-q` quick toggle
+* `? ?` further options
+* `? q` quit help
+
+To view commands from X mode, you can type `x` followed by `?`.
 
 ### Minibuffer
 When enter into the minibuffer, it is by default at the insert mode. Once you have finished typing, you can call `gg` to leave insert mode, then use the regular navigation commands such as `n` or `p` to select the candidates. If you have finished selection, you can use `<return>` to abort the minibuffer, or just use `g` to leave if it needs to be stopped.

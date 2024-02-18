@@ -18,7 +18,7 @@
   :group 'meow)
 
 (meow-define-state visit
-  "Meow VISTIG state minor mode."
+  "Meow VISIT state minor mode."
   :lighter " [V]"
   :keymap meow-visit-state-keymap
   :cursor meow-visit-cursor)

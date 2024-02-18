@@ -7,6 +7,7 @@
   (meow-convert-define-key
    '("g" . meow-convert-exit)
    '("x" . scamx-X-keymap)
+   '("?" . scamx-help-keymap)   
    '("1" . meow-digit-argument)
    '("2" . meow-digit-argument)
    '("3" . meow-digit-argument)
@@ -45,6 +46,7 @@
   (meow-visit-define-key
    '("g" . meow-visit-exit-all)
    '("x" . scamx-X-keymap)
+   '("?" . scamx-help-keymap)   
    '("l" . meow-last-buffer)
    '("n" . next-buffer)
    '("p" . previous-buffer)
@@ -85,6 +87,7 @@
    '("/" . undo-redo))
   (meow-normal-define-key
    '("x" . scamx-X-keymap)
+   '("?" . scamx-help-keymap)   
    '("c" . meow-convert)
    '("v" . meow-visit-all)
    '("s" . meow-isearch)

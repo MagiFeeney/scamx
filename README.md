@@ -159,7 +159,7 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `? c` describe key briefly
 * `? f` describe function
 * `? m` describe mode
-* `? \\` describe input method
+* `? \` describe input method
 * `? b` describe bindings
 * `? p` describe package
 * `? t` tutorial

@@ -64,7 +64,8 @@
    '("M" . maximize-window)
    '("+" . scamx-enlarge-window-horizontally)
    '("-" . scamx-shrink-window-horizontally)
-   '("w" . window-swap-states))
+   '("w" . window-swap-states)
+   '("j" . move-to-window-line-top-bottom))
    ;; '("t" . ace-select-window)
   (meow-isearch-define-key
    '("g" . meow-isearch-exit)

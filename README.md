@@ -178,6 +178,8 @@ To view commands from X mode, you can type `x` followed by `?`.
 ### Minibuffer
 When enter into the minibuffer, it is by default at the insert mode. Once you have finished typing, you can call `gg` to leave insert mode, then use the regular navigation commands such as `n` or `p` to select the candidates. If you have finished selection, you can use `<return>` to abort the minibuffer, or just use `g` to leave if it needs to be stopped.
 
+If you want to loop through the history, you can use `n` or `p` in convert mode instead.
+
 Visit mode also applies to the minibuffer, which means you can move back-and-forth between buffers and the minibuffer.
 
 ### Isearch minor mode

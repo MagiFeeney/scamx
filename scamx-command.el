@@ -87,4 +87,22 @@ the deleted text (similar to `kill-region`)."
 	  (backward-kill-word arg)
 	(backward-kill-word)))))
 
+(defun scamx-forward-paragraph (&optional arg)
+  "Kill line if no region is selected, otherwise kill the region."
+  (interactive "P")
+  (if (minibufferp)
+      (if arg
+	  (next-history-element arg)
+	(next-history-element 1))
+    (forward-paragraph arg)))
+
+(defun scamx-backward-paragraph (&optional arg)
+  "Kill line if no region is selected, otherwise kill the region."
+  (interactive "P")
+  (if (minibufferp)
+      (if arg
+	  (previous-history-element arg)
+	(previous-history-element 1))
+    (backward-paragraph arg)))
+
 (provide 'scamx-command)

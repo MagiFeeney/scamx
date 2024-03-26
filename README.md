@@ -94,10 +94,12 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `b` previous window any frame
 * `c` clone buffer
 * `s` scratch buffer
-* `d` scroll up command
-* `u` scroll down command
-* `e` scroll down line
-* `a` scroll up line
+* `d` scroll page down
+* `D` scroll other page down
+* `u` scroll page up
+* `U` scroll other page up
+* `e` scroll line down
+* `a` scroll line up
 * `r` revert buffer
 * `0` balance windows
 * `m` minimize window

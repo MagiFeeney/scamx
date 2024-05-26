@@ -3,8 +3,8 @@
 Scamx is an experimental modal editing mechanism designed for Emacs. It introduces a modularized, multi-layered approach that integrates seamlessly with default Emacs keybindings, avoiding modifier keys and focusing solely on essential commands. Scamx is crafted to deliver a streamlined and functional modal editing experience within the Emacs environment. As mathematical principles dictate, only mapping matters and those powerful functions are just out there.
 
 ## How to Use
-* Install `meow` with `package-install`
-* Copy the file to your `.emacs.d` directory:
+* Install dependencies `meow`, `multiple-cursors`, `paredit` with `package-install`
+* Copy the files to your `.emacs.d` directory:
 ```
 git clone https://github.com/MagiFeeney/scamx.git && mv scamx ~/.emacs.d
 ```
@@ -12,8 +12,12 @@ git clone https://github.com/MagiFeeney/scamx.git && mv scamx ~/.emacs.d
 ``` elisp
 (use-package scamx
   :load-path "~/.emacs.d/scamx/"
+  :requires (paredit multiple-cursors)
   :config
-  (electric-pair-mode))
+  (electric-pair-mode)     ; produce balanced expressions upon selected region
+  (delete-selection-mode)  ; act without delete or kill
+  (multiple-cursors-mode)  ; multiple-cursors integration
+  (paredit-mode))          ; better sexp support
 ```
 
 ## Modes
@@ -66,10 +70,13 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `b` backward word
 * `d` kill word or delete region if selected
 * `backspace` backward kill word or delete region if selected
-* `e` kill sexp
+* `e` forward kill sexp
 * `a` backward kill sexp
+* `j` join sexps
+* `r` raise sexp
+* `%` split sexp
 * `k` kill paragraph or kill region if selected
-* `h` mark sexp
+* `h` mark paragraph
 * `l` kill whole line
 * `w` copy
 * `y` yank
@@ -82,8 +89,12 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `[` backward sexp
 * `]` forward sexp
 * `{` backward up list
-* `}` up list
+* `}` forward up list
+* `<` move beginning of defun
+* `>` move end of defun
 * `=` mark sexp
+* `,` mark defun
+* `s` allow one key in Normal mode be executed
 
 ### Visit mode
 * `g` back to normal mode
@@ -107,6 +118,8 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `+` bold enlarge window horizontally
 * `-` bold shrink window horizontally
 * `w` swap window
+* `(` tear off window
+* `)` delete frame
 * If you have installed package `ace-window`, then you can further have:
   * `t` select window
   
@@ -114,6 +127,8 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `x` X mode
 * `c` convert mode
 * `v` visit mode
+* `` ` `` motion mode
+* `?` help mode
 * `g` cancel selection or exit minibuffer
 * `a` move beginning of line
 * `e` move end of line
@@ -139,7 +154,7 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `z` zap to char
 * `Z` zap up to char
 * `q` quit current buffer
-* `;` goto line
+* `Q` goto line
 * `r` repeat
 * `l` recenter top bottom
 * `\` delete horizontal space
@@ -148,10 +163,17 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `!` shell command
 * `$` ispell word
 * `%` query replace
-* `,` meow inner of thing
-* `.` meow bounds of thing
-* `[` meow beginning of thing
-* `]` meow end of thing
+
+#### Multiple cursors in Normal mode
+* `[` mc/mark-previous-like-this
+* `]` mc/mark-next-like-this
+* `<` mc/skip-to-previous-like-this
+* `>` mc/skip-to-next-like-this
+* `;` mc/mark-all-dwim
+* `:` mc/mark-all-like-this
+* `'` mc/edit-lines
+* `@` mc/mark-all-words-like-this
+* `#` mc/mark-all-in-region
 
 ### Insert mode
 * `gg` back to normal mode
@@ -200,10 +222,17 @@ Please check the full set up in `scamx-anchor.el`.
 ## Issues and Plans
 - In visit mode, it may occasionally not handle the buffer `*Messages*` properly when navigating previous or next buffer at first attempt.
 - Command conflicts would be observed in one-key oriented mode i.e. dired-mode, image-mode and magit-mode etc.
-  - Now you can switch between those modes and scamx, by entering into the normal mode with `g` and reverting back with `` ` ``. When `g` conflicts with `revert buffer`, you can alternatively use `r` in visit mode.
+
+------
+
+Now you can switch between those modes and scamx, by entering into the normal mode with `g` and reverting back with `` ` ``. When `g` conflicts with `revert buffer`, you can alternatively use `r` in visit mode.
 
 ### TODO list
+#### First Stage
 - [X] Add more functions to convert mode (i.e. up-list, kill-sexp).
-- Integrate with multiple-cursors.
-- Merge meow of things command series into generalized zap command in a dwim style.
-- Allow one command in the normal mode be excuted in the convert mode (like `ctrl-o` in vim).
+- [X] Integrate with multiple-cursors.
+- [X] Merge meow of things command series into generalized zap command in a dwim style.
+- [X] Allow one command in the normal mode be excuted in the convert mode (like `ctrl-o` in vim).
+#### Second Stage
+- [ ] Motion mode as buffer-wise.
+- [ ] Improve selection of inside and outside of balanced expressions.

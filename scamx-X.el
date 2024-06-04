@@ -21,7 +21,7 @@
 (define-key scamx-X-keymap (kbd "]") 'forward-page)
 (define-key scamx-X-keymap (kbd "*") 'calc-dispatch)
 (define-key scamx-X-keymap (kbd "b") 'switch-to-buffer)
-(define-key scamx-X-keymap (kbd "l") 'list-buffers)
+(define-key scamx-X-keymap (kbd "l") 'buffer-menu)
 (define-key scamx-X-keymap (kbd "k") 'kill-buffer)
 (define-key scamx-X-keymap (kbd "i") 'insert-file)
 (define-key scamx-X-keymap (kbd "j") 'dired-jump)

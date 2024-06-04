@@ -136,7 +136,7 @@
    '("w" . kill-ring-save)
    '("y" . yank)
    '("q" . meow-quit)
-   '("Q" . consult-goto-line)
+   '("Q" . goto-line)
    '("k" . scamx-kill-line)
    '("t" . meow-till)
    '("u" . undo)

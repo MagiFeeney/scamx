@@ -12,7 +12,6 @@ git clone https://github.com/MagiFeeney/scamx.git && mv scamx ~/.emacs.d
 ``` elisp
 (use-package scamx
   :load-path "~/.emacs.d/scamx/"
-  :requires (paredit multiple-cursors)
   :config
   (electric-pair-mode)     ; produce balanced expressions upon selected region
   (delete-selection-mode)  ; act without delete or kill
@@ -61,6 +60,7 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `x =` adjust text scale
 * `x <mouse-1>` previous buffer
 * `x <mouse-3>` next buffer
+* `x \` copy current file path to kill ring
 
 ### Convert mode
 * `g` back to normal mode

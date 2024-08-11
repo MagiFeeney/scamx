@@ -116,12 +116,41 @@ the deleted text (similar to `kill-region`)."
     (backward-paragraph arg)))
 
 ;;;###autoload
-(defun scamx-suspend ()
+(defun scamx-tramp-find-file ()
+  "Prompt to choose an SSH connection from a list and connect to it."
   (interactive)
+  (let ((connections '("/ssh:mjf@10.231.321.12:"
+                       "/ssh:mjf@10.231.301.10:"))
+        (chosen-connection nil))
+    (setq chosen-connection (completing-read "Please choose SSH connection: " connections))
+    (find-file chosen-connection)))
+
+;;;###autoload
+(defun read-ssh-connections-from-file (file)
+  "Read SSH connections from FILE, returning them as a list."
+  (with-temp-buffer
+    (insert-file-contents file)
+    (split-string (buffer-string) "\n" t)))
+
+;;;###autoload
+(defun scamx-tramp-find-file ()
+  "Prompt to choose an SSH connection from a list and connect to it."
+  (interactive)
+  (let* ((file "~/.emacs.d/ssh-connections")
+         (connections (read-ssh-connections-from-file file))
+         (chosen-connection nil))
+    (setq chosen-connection (completing-read "Please choose SSH connection: " connections))
+    (find-file chosen-connection)))
+
+;;;###autoload
+(defun scamx-suspend (&optional arg)
+  (interactive "P")
   (when (meow-convert-mode-p)
     (meow--switch-state 'normal)
     (let ((key (read-key-sequence "Suspend to execute a command in Normal mode: ")))
-      (execute-kbd-macro key))
+      (if (not (equal (key-binding key) 'undefined))
+	  (execute-kbd-macro key arg)
+	(message "%s is undefined" key)))
     (meow--switch-state 'convert)))
 
 (provide 'scamx-command)

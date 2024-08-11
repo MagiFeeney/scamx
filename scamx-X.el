@@ -38,5 +38,8 @@
 (define-key scamx-X-keymap (kbd "<mouse-3>") 'next-buffer)
 ;; (define-key scamx-X-keymap (kbd "v") 'magit-status)
 (define-key scamx-X-keymap (kbd "m") 'compose-mail)
+;; customized
+(define-key scamx-X-keymap (kbd "\\") (lambda () (interactive) (kill-new buffer-file-name)))
+
 
 (provide 'scamx-X)

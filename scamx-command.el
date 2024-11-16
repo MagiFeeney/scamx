@@ -16,8 +16,8 @@
     (if (use-region-p)
         (kill-region (region-beginning) (region-end))
       (if arg 
-          (paredit-kill (prefix-numeric-value arg))
-        (paredit-kill)))))
+          (kill-line (prefix-numeric-value arg))
+        (kill-line)))))
 
 ;;;###autoload
 (defun scamx-kill-sentence (&optional arg)
@@ -114,33 +114,6 @@ the deleted text (similar to `kill-region`)."
 	  (previous-history-element arg)
 	(previous-history-element 1))
     (backward-paragraph arg)))
-
-;;;###autoload
-(defun scamx-tramp-find-file ()
-  "Prompt to choose an SSH connection from a list and connect to it."
-  (interactive)
-  (let ((connections '("/ssh:mjf@10.231.321.12:"
-                       "/ssh:mjf@10.231.301.10:"))
-        (chosen-connection nil))
-    (setq chosen-connection (completing-read "Please choose SSH connection: " connections))
-    (find-file chosen-connection)))
-
-;;;###autoload
-(defun read-ssh-connections-from-file (file)
-  "Read SSH connections from FILE, returning them as a list."
-  (with-temp-buffer
-    (insert-file-contents file)
-    (split-string (buffer-string) "\n" t)))
-
-;;;###autoload
-(defun scamx-tramp-find-file ()
-  "Prompt to choose an SSH connection from a list and connect to it."
-  (interactive)
-  (let* ((file "~/.emacs.d/ssh-connections")
-         (connections (read-ssh-connections-from-file file))
-         (chosen-connection nil))
-    (setq chosen-connection (completing-read "Please choose SSH connection: " connections))
-    (find-file chosen-connection)))
 
 ;;;###autoload
 (defun scamx-suspend (&optional arg)

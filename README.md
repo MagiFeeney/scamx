@@ -3,12 +3,12 @@
 Scamx is an experimental modal editing mechanism designed for Emacs. It introduces a modularized, multi-layered approach that integrates seamlessly with default Emacs keybindings, avoiding modifier keys and focusing solely on essential commands. Scamx is crafted to deliver a streamlined and functional modal editing experience within the Emacs environment. As mathematical principles dictate, only mapping matters and those powerful functions are just out there.
 
 ## How to Use
-* Install dependencies `meow`, `multiple-cursors`, `paredit` with `package-install`
+* Install dependencies `meow`, `multiple-cursors` with `package-install`
 * Copy the files to your `.emacs.d` directory:
 ```
 git clone https://github.com/MagiFeeney/scamx.git && mv scamx ~/.emacs.d
 ```
-* Load the package with `use-package`:
+* Load the package with `use-package` in either `.emacs` or `init.el`:
 ``` elisp
 (use-package scamx
   :load-path "~/.emacs.d/scamx/"
@@ -16,15 +16,12 @@ git clone https://github.com/MagiFeeney/scamx.git && mv scamx ~/.emacs.d
   (electric-pair-mode)     ; produce balanced expressions upon selected region
   (delete-selection-mode)  ; act without delete or kill
   (multiple-cursors-mode)  ; multiple-cursors integration
-  (paredit-mode))          ; better sexp support
 ```
 
 ## Modes
 There are four major modes: normal, X, convert, and visit, where some minor modes, such as isearch, are wrapped into them. The normal mode serves as a base for basic navigation and modes invoking. And X mode is sequence commands with a prefix "x". Convert mode "c" is bolder compared to normal mode, and visit mode "v" navigates, views and manages buffer or window.
 
-
 ### X mode
-
 * `x f` open a file.
 * `x w` write file
 * `x s` save buffer
@@ -62,6 +59,45 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `x <mouse-3>` next buffer
 * `x \` copy current file path to kill ring
 
+### Normal mode
+* `x` X mode
+* `c` convert mode
+* `v` visit mode
+* `` ` `` motion mode
+* `?` help mode
+* `g` cancel selection or exit minibuffer
+* `a` move beginning of line
+* `e` move end of line
+* `d` delete forward one char or delete region if selected
+* `h` delete backward one char or delete region if selected
+* `i` insert
+* `o` open below
+* `O` open above
+* `n` next line
+* `p` previous line
+* `f` forward char
+* `b` backward char
+* `j` newline (a.k.a \<return\>)
+* `m` back to indentation
+* `s` isearch forward minor mode
+* `k` kill line at point or kill region if selected
+* `w` copy
+* `y` yank
+* `u` undo
+* `/` redo
+* `t` select to char
+* `z` zap up to char
+* `Z` zap to char
+* `q` quit current buffer
+* `Q` goto line
+* `l` recenter top bottom
+* `\` delete horizontal space
+* `=` mark word
+* `SPC` set mark command
+* `!` shell command
+* `$` ispell word
+* `%` query replace
+
 ### Convert mode
 * `g` back to normal mode
 * `n` forward paragraph
@@ -69,14 +105,10 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `f` forward word
 * `b` backward word
 * `d` kill word or delete region if selected
-* `backspace` backward kill word or delete region if selected
+* `h` backward kill word or delete region if selected
 * `e` forward kill sexp
 * `a` backward kill sexp
-* `j` join sexps
-* `r` raise sexp
-* `%` split sexp
 * `k` kill paragraph or kill region if selected
-* `h` mark paragraph
 * `l` kill whole line
 * `w` copy
 * `y` yank
@@ -123,47 +155,6 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * If you have installed package `ace-window`, then you can further have:
   * `t` select window
   
-### Normal mode
-* `x` X mode
-* `c` convert mode
-* `v` visit mode
-* `` ` `` motion mode
-* `?` help mode
-* `g` cancel selection or exit minibuffer
-* `a` move beginning of line
-* `e` move end of line
-* `d` delete forward one char or delete region if selected
-* `backspace` delete backward one char or delete region if selected
-* `i` insert
-* `o` open below
-* `O` open above
-* `n` next line
-* `p` previous line
-* `f` forward char
-* `b` backward char
-* `j` newline (a.k.a \<return\>)
-* `m` back to indentation
-* `s` isearch forward minor mode
-* `k` kill line at point or kill region if selected
-* `h` mark line
-* `w` copy
-* `y` yank
-* `u` undo
-* `/` redo
-* `t` select to char
-* `z` zap to char
-* `Z` zap up to char
-* `q` quit current buffer
-* `Q` goto line
-* `r` repeat
-* `l` recenter top bottom
-* `\` delete horizontal space
-* `=` mark word
-* `SPC` set mark command
-* `!` shell command
-* `$` ispell word
-* `%` query replace
-
 #### Multiple cursors in Normal mode
 * `[` mc/mark-previous-like-this
 * `]` mc/mark-next-like-this
@@ -216,8 +207,7 @@ Please check the full set up in `scamx-anchor.el`.
 * The convert mode can be invoked on top of the current mark, use whatever commands needed, then revert back to normal mode while keeping the mark.
 
 ### Negative argument
-* `-` can be combined with directional commands, i.e. `- t` select backward to, `- h` mark backward line.
-* You can then use `r` to repeat those commands if needed. 
+* `-` can be combined with directional commands, i.e. `- t` select backward to a char, `- k` kill backward a line.
 
 ## Issues and Plans
 - In visit mode, it may occasionally not handle the buffer `*Messages*` properly when navigating previous or next buffer at first attempt.

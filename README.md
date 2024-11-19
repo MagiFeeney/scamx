@@ -107,8 +107,6 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `b` backward word
 * `d` kill word or delete region if selected
 * `h` backward kill word or delete region if selected
-* `e` forward kill sexp
-* `a` backward kill sexp
 * `k` kill paragraph or kill region if selected
 * `l` kill whole line
 * `w` copy

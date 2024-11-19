@@ -16,6 +16,7 @@ git clone https://github.com/MagiFeeney/scamx.git && mv scamx ~/.emacs.d
   (electric-pair-mode)     ; produce balanced expressions upon selected region
   (delete-selection-mode)  ; act without delete or kill
   (multiple-cursors-mode)  ; multiple-cursors integration
+  )
 ```
 
 ## Modes

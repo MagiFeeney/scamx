@@ -24,17 +24,10 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 
 ### X mode
 * `x f` open a file.
-* `x w` write file
 * `x s` save buffer
 * `x c` save and close emacs
 * `x z` minimize window
 * `x h` select whole buffer
-* `x 0` delete current window
-* `x 1` delete other window
-* `x 2` split window vertically
-* `x 3` split window horizontally
-* `x o` move forward to other window
-* `x O` move backward to other window
 * `x <tab>` indent region
 * `x (` start macro
 * `x )` end macro
@@ -45,11 +38,8 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `x b` switch to buffer
 * `x l` list all buffers
 * `x k` kill buffer
-* `x i` insert file
 * `x j` dired jump
 * `x x` exchange point and mark
-* `x ;` comment line
-* `x '` comment or uncomment region
 * `x SPC` pop to mark command
 * `x n` duplicate line
 * `x ESC` repeat complex command
@@ -59,6 +49,8 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `x <mouse-1>` previous buffer
 * `x <mouse-3>` next buffer
 * `x \` copy current file path to kill ring
+* `x o` org mode map (e.g. org mode or org-roam commands)
+* `x m` set mode map (e.g. eshell, python ...)
 
 ### Normal mode
 * `x` X mode
@@ -85,7 +77,7 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `w` copy
 * `y` yank
 * `u` undo
-* `/` redo
+* `r` redo
 * `t` select to char
 * `z` zap up to char
 * `Z` zap to char
@@ -98,6 +90,9 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `!` shell command
 * `$` ispell word
 * `%` query replace
+* `;` comment line
+* `'` comment or uncomment region
+* `<backspace>` kill whole line
 
 ### Convert mode
 * `g` back to normal mode
@@ -108,12 +103,12 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `d` kill word or delete region if selected
 * `h` backward kill word or delete region if selected
 * `k` kill paragraph or kill region if selected
-* `l` kill whole line
 * `w` copy
 * `y` yank
 * `u` undo
-* `/` redo
+* `r` redo
 * `a` backward kill sexp
+* `j` raise sexp
 * `e` kill sexp
 * `(` backward list
 * `)` forward list
@@ -143,12 +138,17 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `e` scroll line down
 * `a` scroll line up
 * `r` revert buffer
-* `0` balance windows
+* `0` delete window
+* `1` delete other windows
+* `=` balance windows
 * `m` minimize window
 * `M` maximize window
+* `|` split window horizontally
+* `_` split window vertically
 * `+` bold enlarge window horizontally
 * `-` bold shrink window horizontally
 * `w` swap window
+* `j` move cursor on top, center or bottom of the screen
 * `(` tear off window
 * `)` delete frame
 * If you have installed package `ace-window`, then you can further have:
@@ -159,9 +159,8 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `]` mc/mark-next-like-this
 * `<` mc/skip-to-previous-like-this
 * `>` mc/skip-to-next-like-this
-* `;` mc/mark-all-dwim
 * `:` mc/mark-all-like-this
-* `'` mc/edit-lines
+* `"` mc/edit-lines
 * `@` mc/mark-all-words-like-this
 * `#` mc/mark-all-in-region
 

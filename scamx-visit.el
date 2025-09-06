@@ -14,7 +14,7 @@
      (:inherit cursor))
     (((class color) (background light))
      (:inherit cursor)))
-  "Convert state cursor."
+  "Visit state cursor."
   :group 'meow)
 
 (meow-define-state visit

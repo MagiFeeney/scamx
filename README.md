@@ -46,13 +46,13 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `x .` eval last sexp
 * `x :` eval expression
 * `x =` adjust text scale
-* `x <mouse-1>` previous buffer
-* `x <mouse-3>` next buffer
 * `x \` copy current file path to kill ring
+* `x ~` shutdown the computer
 * `x o` org mode map (e.g. org mode or org-roam commands)
 * `x m` set mode map (e.g. eshell, python ...)
 
 ### Normal mode
+* `/` M-x
 * `x` X mode
 * `c` convert mode
 * `v` visit mode
@@ -93,8 +93,11 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `;` comment line
 * `'` comment or uncomment region
 * `<backspace>` kill whole line
+* `,` mark inside pairs dwim
+* `.` mark outside pairs dwim ((), {}, [], \"\", '')
 
 ### Convert mode
+* `/` M-x
 * `g` back to normal mode
 * `n` forward paragraph
 * `p` backward paragraph
@@ -184,7 +187,7 @@ There are four major modes: normal, X, convert, and visit, where some minor mode
 * `? v` search by keyword
 * `? C-q` quick toggle
 * `? ?` further options
-* `? q` quit help
+* `? q` quit help,
 
 To view commands from X mode, you can type `x` followed by `?`.
 

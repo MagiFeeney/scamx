@@ -5,7 +5,9 @@
 (defun meow--two-char-exit-insert-state (s)
   (when (meow-insert-mode-p)
     (let ((modified (buffer-modified-p)))
-      (insert (elt s 0))
+      (if (eq major-mode 'vterm-mode)
+	  (vterm-send-key (string (elt s 0)))
+	(insert (elt s 0)))
       (let* ((second-char (elt s 1))
              (event
               (if defining-kbd-macro
@@ -14,9 +16,12 @@
         (when event
           (if (and (characterp event) (= event second-char))
               (progn
-                (backward-delete-char 1)
+		(if (eq major-mode 'vterm-mode)
+		    (vterm-send-backspace)
+                  (backward-delete-char 1))
                 (set-buffer-modified-p modified)
-                (meow--execute-kbd-macro "<escape>"))
+                ;; (meow--execute-kbd-macro "<escape>"))
+                (meow-insert-exit))
             (push event unread-command-events)))))))
 
 (defun meow-two-char-exit-insert-state ()

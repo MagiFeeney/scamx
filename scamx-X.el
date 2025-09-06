@@ -2,6 +2,7 @@
   :doc "set to a specific mode"
   "s" 'eshell
   ;; "v" 'vterm
+  ;; "m" 'magit-status
   "n" 'normal-mode
   "t" 'tex-mode
   "p" 'python-mode)
@@ -37,13 +38,10 @@
 (define-key scamx-X-keymap (kbd ".") 'eval-last-sexp)
 (define-key scamx-X-keymap (kbd ":") 'eval-expression)
 (define-key scamx-X-keymap (kbd "=") 'text-scale-adjust)
-(define-key scamx-X-keymap (kbd "<mouse-1>") 'previous-buffer)
-(define-key scamx-X-keymap (kbd "<mouse-3>") 'next-buffer)
 (define-key scamx-X-keymap (kbd "o") scamx-org-map)
 (define-key scamx-X-keymap (kbd "m") scamx-set-mode-map)
-;; (define-key scamx-X-keymap (kbd "v") 'magit-status)
-;; (define-key scamx-X-keymap (kbd "t") 'vterm)
 ;; customized
 (define-key scamx-X-keymap (kbd "\\") (lambda () (interactive) (kill-new buffer-file-name)))
+(define-key scamx-X-keymap (kbd "~") (lambda () (interactive) (shell-command "shutdown now")))
 
 (provide 'scamx-X)

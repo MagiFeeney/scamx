@@ -9,6 +9,26 @@
   (enlarge-window-horizontally 40))
 
 ;;;###autoload
+(defun scamx-scroll-down-command ()
+  (interactive)
+  (scroll-down-command (/ (window-body-height) 2)))
+
+;;;###autoload
+(defun scamx-scroll-up-command ()
+  (interactive)
+  (scroll-up-command (/ (window-body-height) 2)))
+
+;;;###autoload
+(defun scamx-scroll-other-window-down ()
+  (interactive)
+  (scroll-other-window-down (/ (window-body-height) 2)))
+
+;;;###autoload
+(defun scamx-scroll-other-window ()
+  (interactive)
+  (scroll-other-window (/ (window-body-height) 2)))
+
+;;;###autoload
 (defun scamx-kill-line (&optional arg)
   "Kill line if no region is selected, otherwise kill the region."
   (interactive "P")
@@ -125,5 +145,22 @@ the deleted text (similar to `kill-region`)."
 	  (execute-kbd-macro key arg)
 	(message "%s is undefined" key)))
     (meow--switch-state 'convert)))
+
+;;;###autoload
+(defun scamx-mark-inside-pairs (&optional arg)
+  "Move up one list level, then mark the sexp inside."
+  (interactive "p")
+  (scamx-mark-outside-pairs arg)
+  (forward-char)
+  (exchange-point-and-mark)
+  (backward-char)
+  (exchange-point-and-mark))
+
+;;;###autoload
+(defun scamx-mark-outside-pairs (&optional arg)
+  "Move up one list level, then mark the sexp outside."
+  (interactive "p")
+  (backward-up-list arg (point) (point))
+  (mark-sexp))
 
 (provide 'scamx-command)

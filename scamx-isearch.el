@@ -31,7 +31,7 @@
      (:inherit cursor))
     (((class color) (background light))
      (:inherit cursor)))
-  "Convert state cursor."
+  "Isearch state cursor."
   :group 'meow)
 
 (meow-define-state isearch

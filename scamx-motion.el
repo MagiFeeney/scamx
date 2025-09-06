@@ -23,4 +23,6 @@
         (meow--switch-state 'motion))
     (meow--switch-state 'motion)))
 
+(define-key meow-motion-state-keymap [escape] nil)
+
 (provide 'scamx-motion)

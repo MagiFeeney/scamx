@@ -4,11 +4,14 @@
   (cond
    ((meow-insert-mode-p)
     (meow-insert-exit))
-   ((minibufferp)
-    (keyboard-escape-quit))
+   ((derived-mode-p 'completion-list-mode)
+    (delete-completion-window))
+   ((> (minibuffer-depth) 0)
+    (abort-recursive-edit))
    ((region-active-p)
     (meow-cancel-selection))
-   (t)))
+   (t
+    (keyboard-quit))))
 
 (defun my/meow-setup-extra ()
   ;; Don't ignore cursor shape changes in minibuffer

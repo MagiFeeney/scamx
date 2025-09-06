@@ -7,4 +7,6 @@
         (meow--switch-state 'motion))
     (meow--switch-state 'insert)))
 
+(define-key meow-insert-state-keymap [escape] nil)
+
 (provide 'scamx-insert)

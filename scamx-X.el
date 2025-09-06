@@ -9,8 +9,8 @@
 
 (defvar-keymap scamx-org-map
   :doc "access org mode via scamx, bind org-roam commands as well if it is installed"
-  "a" . org-agenda
-  "s" . org-capture)
+  "a" 'org-agenda
+  "s" 'org-capture)
 
 (defvar scamx-X-keymap (make-sparse-keymap))
 (defalias 'scamx-X-keymap scamx-X-keymap)

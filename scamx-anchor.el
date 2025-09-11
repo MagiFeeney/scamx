@@ -1,7 +1,38 @@
+;;; scamx-anchor.el --- Keybindings Control  -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2025  MagiFeeney
+
+;; Author: MagiFeeney <matrixfeeney@gmail.com>
+;; Keywords: convenience, layered-modal-editing
+;; Package-Requires: ((emacs "27.1"))
+;; URL: https://github.com/MagiFeeney/scamx
+;;
+;; This file is not part of GNU Emacs.
+
+;; This program is free software; you can redistribute it and/or
+;; modify it under the terms of the GNU General Public License
+;; as published by the Free Software Foundation; either version 3
+;; of the License, or (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with GNU Emacs; see the file COPYING.  If not, write to the
+;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+;; Boston, MA 02110-1301, USA.
+
+;;; Commentary:
+;; Keybindings setup for all modes
+
+;;; Code:
+
 (defun meow-setup ()
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
   (meow-motion-overwrite-define-key	; minimal overwrite to not interfere original commands
-   '("g" . meow-motion-exit)   
+   '("g" . meow-motion-exit)
    '("n" . next-line)
    '("p" . previous-line))
   (meow-convert-define-key
@@ -19,7 +50,7 @@
    '("9" . meow-digit-argument)
    '("0" . meow-digit-argument)
    '("-" . negative-argument)
-   '("," . mark-defun)   
+   '("," . mark-defun)
    '("(" . backward-list)
    '(")" . forward-list)
    '("[" . backward-sexp)
@@ -27,7 +58,7 @@
    '("{" . backward-up-list)
    '("}" . up-list)
    '("<" . beginning-of-defun)
-   '(">" . end-of-defun)   
+   '(">" . end-of-defun)
    '("n" . scamx-forward-paragraph)
    '("p" . scamx-backward-paragraph)
    '("f" . forward-word)
@@ -35,7 +66,7 @@
    '("d" . scamx-kill-word)
    '("h" . scamx-backward-kill-word)
    '("e" . kill-sexp)
-   '("j" . raise-sexp)   
+   '("j" . raise-sexp)
    '("a" . backward-kill-sexp)
    '("k" . scamx-kill-paragraph)
    '("=" . mark-sexp)
@@ -70,7 +101,7 @@
    '("m" . minimize-window)
    '("M" . maximize-window)
    '("|" . split-window-horizontally)
-   '("_" . split-window-vertically)   
+   '("_" . split-window-vertically)
    '("+" . scamx-enlarge-window-horizontally)
    '("-" . scamx-shrink-window-horizontally)
    '("w" . window-swap-states)
@@ -94,7 +125,8 @@
    '("r" . isearch-toggle-regexp)
    '("[" . isearch-beginning-of-buffer)
    '("]" . isearch-end-of-buffer)
-   '("." . isearch-forward-thing-at-point))
+   '("." . isearch-forward-thing-at-point)
+   '("e" . isearch-edit-string))
   (meow-normal-define-key
    '("x" . scamx-X-keymap)
    '("?" . scamx-help-keymap)
@@ -150,7 +182,7 @@
    '("=" . mark-word)
    '("SPC" . set-mark-command)
    '(";" . comment-line)
-   '("'" . comment-or-uncomment-region)   
+   '("'" . comment-or-uncomment-region)
    ;; multiple cursors
    '("[" . mc/mark-previous-like-this)
    '("]" . mc/mark-next-like-this)
@@ -168,3 +200,4 @@
   (setq meow-expand-hint-remove-delay 0))
 
 (provide 'scamx-anchor)
+;;; scamx-anchor.el ends here

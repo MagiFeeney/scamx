@@ -1,3 +1,34 @@
+;;; scamx-help.el --- Help Mode  -*- lexical-binding: t; -*-
+
+;; Copyright (C) 2025  MagiFeeney
+
+;; Author: MagiFeeney <matrixfeeney@gmail.com>
+;; Keywords: convenience, layered-modal-editing
+;; Package-Requires: ((emacs "27.1"))
+;; URL: https://github.com/MagiFeeney/scamx
+;;
+;; This file is not part of GNU Emacs.
+
+;; This program is free software; you can redistribute it and/or
+;; modify it under the terms of the GNU General Public License
+;; as published by the Free Software Foundation; either version 3
+;; of the License, or (at your option) any later version.
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with GNU Emacs; see the file COPYING.  If not, write to the
+;; Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+;; Boston, MA 02110-1301, USA.
+
+;;; Commentary:
+;; Help mode, equivalent of C-h, only essential kept
+
+;;; Code:
+
 (defvar scamx-help-keymap (make-sparse-keymap))
 (defalias 'scamx-help-keymap scamx-help-keymap)
 (define-key scamx-help-keymap (kbd "k") 'meow-describe-key)
@@ -19,3 +50,4 @@
 (define-key scamx-help-keymap (kbd "q") 'help-quit)
 
 (provide 'scamx-help)
+;;; scamx-help.el ends here

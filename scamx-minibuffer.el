@@ -38,10 +38,10 @@
     (meow-insert-exit))
    ((derived-mode-p 'completion-list-mode)
     (delete-completion-window))
-   ((> (minibuffer-depth) 0)
-    (abort-recursive-edit))
    ((region-active-p)
     (meow-cancel-selection))
+   ((> (minibuffer-depth) 0)
+    (abort-recursive-edit))
    (t
     (keyboard-quit))))
 

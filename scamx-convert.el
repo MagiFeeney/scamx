@@ -1,8 +1,8 @@
 ;;; scamx-convert.el --- Convert Mode  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2025  MagiFeeney
+;; Copyright (C) 2025  Magi Feeney
 
-;; Author: MagiFeeney <matrixfeeney@gmail.com>
+;; Author: Magi Feeney <matrixfeeney@gmail.com>
 ;; Keywords: convenience, layered-modal-editing
 ;; Package-Requires: ((emacs "27.1"))
 ;; URL: https://github.com/MagiFeeney/scamx

@@ -40,24 +40,24 @@
   (enlarge-window-horizontally 40))
 
 ;;;###autoload
-(defun scamx-scroll-down-command ()
-  (interactive)
-  (scroll-down-command (/ (window-body-height) 2)))
+(defun scamx-scroll-down-command (&optional arg)
+  (interactive "p")
+  (scroll-down-command (* arg (/ (window-body-height) 2))))
 
 ;;;###autoload
-(defun scamx-scroll-up-command ()
-  (interactive)
-  (scroll-up-command (/ (window-body-height) 2)))
+(defun scamx-scroll-up-command (&optional arg)
+  (interactive "p")
+  (scroll-up-command (* arg (/ (window-body-height) 2))))
 
 ;;;###autoload
-(defun scamx-scroll-other-window-down ()
-  (interactive)
-  (scroll-other-window-down (/ (window-body-height) 2)))
+(defun scamx-scroll-other-window-down (&optional arg)
+  (interactive "p")
+  (scroll-other-window-down (* arg (/ (window-body-height) 2))))
 
 ;;;###autoload
-(defun scamx-scroll-other-window ()
-  (interactive)
-  (scroll-other-window (/ (window-body-height) 2)))
+(defun scamx-scroll-other-window (&optional arg)
+  (interactive "p")
+  (scroll-other-window (* arg (/ (window-body-height) 2))))
 
 ;;;###autoload
 (defun scamx-kill-line (&optional arg)

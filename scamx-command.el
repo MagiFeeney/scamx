@@ -92,7 +92,7 @@
         (kill-region (region-beginning) (region-end))
       (if arg 
           (kill-paragraph arg)
-        (kill-paragraph)))))
+        (kill-paragraph 1)))))
 
 ;;;###autoload
 (defun scamx-delete-char (arg &optional killp)
@@ -108,7 +108,7 @@ the deleted text (similar to `kill-region`)."
 	  (if killp
 	      (delete-char arg killp)
 	    (delete-char arg))
-	(delete-char)))))
+	(delete-char 1)))))
 
 ;;;###autoload
 (defun scamx-backward-delete-char (arg &optional killp)
@@ -124,7 +124,7 @@ the deleted text (similar to `kill-region`)."
 	  (if killp
 	      (backward-delete-char-untabify arg killp)
 	    (backward-delete-char-untabify arg))
-	(backward-delete-char-untabify)))))
+	(backward-delete-char-untabify 1)))))
 
 ;;;###autoload
 (defun scamx-kill-word (arg)
@@ -135,7 +135,7 @@ the deleted text (similar to `kill-region`)."
         (delete-active-region nil)
       (if arg
 	  (kill-word arg)
-	(kill-word)))))
+	(kill-word 1)))))
 
 ;;;###autoload
 (defun scamx-backward-kill-word (arg)
@@ -146,7 +146,7 @@ the deleted text (similar to `kill-region`)."
         (delete-active-region nil)
       (if arg
 	  (backward-kill-word arg)
-	(backward-kill-word)))))
+	(backward-kill-word 1)))))
 
 ;;;###autoload
 (defun scamx-forward-paragraph (&optional arg)

@@ -36,6 +36,7 @@
 ;;; Code:
 
 (declare-function meow-end-kmacro "meow-command")
+(declare-function meow-define-state "meow-helpers")
 
 (use-package isearch
   :custom

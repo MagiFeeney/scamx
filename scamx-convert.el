@@ -29,7 +29,11 @@
 
 ;;; Code:
 
+(require 'meow-util)
+
 (declare-function meow-end-kmacro "meow-command")
+(declare-function meow-define-state "meow-helpers")
+(declare-function meow-define-keys "meow-helpers")
 
 (defvar meow-convert-state-keymap
   (let ((keymap (make-keymap)))

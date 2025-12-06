@@ -30,6 +30,13 @@
 
 ;;; Code:
 
+(require 'scamx-isearch)
+
+(declare-function meow-cancel-selection "meow-command")
+(declare-function meow--update-cursor-default "meow-util")
+(declare-function meow--minibuffer-setup "meow-util")
+(declare-function meow-update-cursor-functions-alist "meow-var")
+
 (defun my/meow-escape ()
   "Quit INSERT or quit minibuffer or do nothing."
   (interactive)

@@ -30,6 +30,11 @@
 
 ;;; Code:
 
+(require 'meow-util)
+
+(declare-function meow-cancel-selection "meow-command")
+(declare-function meow-motion-state-keymap "meow-keymap")
+
 (defun meow-motion-exit ()
   "Switch to NORMAL state."
   (interactive)

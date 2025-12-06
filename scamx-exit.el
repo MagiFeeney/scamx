@@ -29,6 +29,8 @@
 
 ;;; Code:
 
+(require 'scamx-isearch)
+
 (declare-function vterm-send-backspace "vterm")
 (declare-function vterm-send-key "vterm")
 

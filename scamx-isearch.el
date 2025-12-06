@@ -36,7 +36,11 @@
 ;;; Code:
 
 (declare-function meow-end-kmacro "meow-command")
+(declare-function meow-end-or-call-kmacro "meow-command")
 (declare-function meow-define-state "meow-helpers")
+(declare-function meow-define-keys "meow-helpers")
+(declare-function meow--switch-state "meow-util")
+(declare-function meow--exit-keypad-state "meow-util")
 
 (use-package isearch
   :custom

@@ -32,6 +32,7 @@
 (require 'meow-util)
 
 (declare-function meow-end-kmacro "meow-command")
+(declare-function meow-end-or-call-kmacro "meow-command")
 (declare-function meow-define-state "meow-helpers")
 (declare-function meow-define-keys "meow-helpers")
 

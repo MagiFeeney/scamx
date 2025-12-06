@@ -3,19 +3,13 @@
 Scamx is an experimental modal editing mechanism designed for Emacs. It introduces a modularized, multi-layered approach that integrates seamlessly with default Emacs keybindings, avoiding modifier keys and focusing solely on essential commands. Scamx is crafted to deliver a streamlined and functional modal editing experience within the Emacs environment. As mathematical principles dictate, only mapping matters and those powerful functions are just out there.
 
 ## How to Use
-* Install dependencies `meow`, `multiple-cursors` with `package-install`
-* Copy the files to your `.emacs.d` directory:
-```
-git clone https://github.com/MagiFeeney/scamx.git && mv scamx ~/.emacs.d
-```
-* Load the package with `use-package` in either `.emacs` or `init.el`:
+
 ``` elisp
 (use-package scamx
-  :load-path "~/.emacs.d/scamx/"
+  :ensure t
+  :vc (:url "https://github.com/MagiFeeney/scamx/")
   :config
-  (electric-pair-mode)     ; produce balanced expressions upon selected region
-  (delete-selection-mode)  ; act without delete or kill
-  (multiple-cursors-mode)  ; multiple-cursors integration
+  (electric-pair-mode)
   )
 ```
 

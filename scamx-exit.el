@@ -29,6 +29,12 @@
 
 ;;; Code:
 
+(declare-function vterm-send-backspace "vterm")
+(declare-function vterm-send-key "vterm")
+
+(defvar meow-two-char-escape-sequence)
+(defvar meow-two-char-escape-delay)
+
 (setq meow-two-char-escape-sequence "gg")
 (setq meow-two-char-escape-delay 0.3)
 

@@ -29,14 +29,14 @@
 
 ;;; Code:
 
+(declare-function meow-end-kmacro "meow-command")
+
 (defvar meow-convert-state-keymap
   (let ((keymap (make-keymap)))
     (suppress-keymap keymap t)
     (define-key keymap (kbd "i") 'meow-insert)
-    (define-key keymap [remap kmacro-start-macro] #'meow-start-kmacro)
-    (define-key keymap [remap kmacro-start-macro-or-insert-counter] #'meow-start-kmacro-or-insert-counter)
     (define-key keymap [remap kmacro-end-or-call-macro] #'meow-end-or-call-kmacro)
-    (define-key keymap [remap kmacro-end-macro] #'meow-end-kmacro)
+    (define-key keymap [remap kmacro-end-macro] #'meow-end-kmacro)    
     keymap)
   "Keymap for Meow convert state.")
 
@@ -62,11 +62,7 @@
   (interactive)
   (cond
    ((meow-keypad-mode-p)
-    (meow--exit-keypad-state))
-   ((and (meow-convert-mode-p)
-         (eq meow--beacon-defining-kbd-macro 'quick))
-    (setq meow--beacon-defining-kbd-macro nil)
-    (meow-beacon-convert-exit))
+    (meow--exit-keypad-state))   
    ((meow-convert-mode-p)
     (when overwrite-mode
       (overwrite-mode -1))

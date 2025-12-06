@@ -35,11 +35,7 @@
   (interactive)
   (cond
    ((meow-keypad-mode-p)
-    (meow--exit-keypad-state))
-   ((and (meow-motion-mode-p)
-         (eq meow--beacon-defining-kbd-macro 'quick))
-    (setq meow--beacon-defining-kbd-macro nil)
-    (meow-beacon-motion-exit))
+    (meow--exit-keypad-state))   
    ((meow-motion-mode-p)
     (when overwrite-mode
       (overwrite-mode -1))

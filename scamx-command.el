@@ -29,6 +29,8 @@
 
 ;;; Code:
 
+(require 'scamx-convert)
+
 ;;;###autoload
 (defun scamx-shrink-window-horizontally ()
   (interactive)

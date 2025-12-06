@@ -35,12 +35,12 @@
 
 ;;; Code:
 
+(require 'meow-util)
+
 (declare-function meow-end-kmacro "meow-command")
 (declare-function meow-end-or-call-kmacro "meow-command")
 (declare-function meow-define-state "meow-helpers")
 (declare-function meow-define-keys "meow-helpers")
-(declare-function meow--switch-state "meow-util")
-(declare-function meow--exit-keypad-state "meow-util")
 
 (use-package isearch
   :custom
@@ -81,6 +81,12 @@
   :lighter " [S]"
   :keymap meow-isearch-state-keymap
   :cursor meow-isearch-cursor)
+
+(defvar meow-isearch-mode)
+
+(defun meow-isearch-mode-p ()
+  "Whether isearch mode is enabled."
+  (bound-and-true-p meow-isearch-mode))
 
 (defun meow-isearch-define-key (&rest keybinds)
   (apply #'meow-define-keys 'isearch keybinds))

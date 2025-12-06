@@ -60,7 +60,12 @@
   :keymap meow-visit-state-keymap
   :cursor meow-visit-cursor)
 
-;; (add-hook 'find-file-hook #'meow--enable-visit-state)
+(defvar meow-visit-mode)
+
+(defun meow-visit-mode-p ()
+  "Whether visit mode is enabled."
+  (bound-and-true-p meow-visit-mode))
+
 (add-hook 'change-major-mode-hook #'meow--enable-visit-state)
 
 (defun meow--enable-visit-state ()

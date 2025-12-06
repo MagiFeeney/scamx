@@ -59,6 +59,12 @@
   :keymap meow-convert-state-keymap
   :cursor meow-convert-cursor)
 
+(defvar meow-visit-mode)
+
+(defun meow-convert-mode-p ()
+  "Whether convert mode is enabled."
+  (bound-and-true-p meow-convert-mode))
+
 (defun meow-convert-define-key (&rest keybinds)
   (apply #'meow-define-keys 'convert keybinds))
 

@@ -4,7 +4,7 @@
 
 ;; Author: Magi Feeney <matrixfeeney@gmail.com>
 ;; Keywords: convenience, layered-modal-editing
-;; Package-Requires: ((emacs "27.1"))
+;; Package-Requires: ((emacs "27.1") (meow) (multiple-cursors))
 ;; URL: https://github.com/MagiFeeney/scamx
 ;;
 ;; This file is not part of GNU Emacs.
@@ -28,6 +28,8 @@
 ;; Import all the modules
 
 ;;; Code:
+
+(require 'meow)
 
 (require 'scamx-command)
 (require 'scamx-minibuffer)

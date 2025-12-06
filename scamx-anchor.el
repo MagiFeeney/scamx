@@ -29,6 +29,13 @@
 
 ;;; Code:
 
+(require 'meow)
+(require 'scamx-command)
+(require 'scamx-convert)
+(require 'scamx-visit)
+(require 'scamx-isearch)
+(require 'scamx-motion)
+
 (defun meow-setup ()
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
   (meow-motion-overwrite-define-key	; minimal overwrite to not interfere original commands

@@ -29,12 +29,18 @@
 
 ;;; Code:
 
+(require 'meow-util)
+
+(declare-function meow-end-kmacro "meow-command")
+(declare-function meow-end-or-call-kmacro "meow-command")
+(declare-function meow-define-state "meow-helpers")
+(declare-function meow-define-keys "meow-helpers")
+(declare-function meow--cancel-selection "meow-command")
+
 (defvar meow-visit-state-keymap
   (let ((keymap (make-keymap)))
     (suppress-keymap keymap t)
-    (define-key keymap (kbd "i") 'meow-insert)
-    (define-key keymap [remap kmacro-start-macro] #'meow-start-kmacro)
-    (define-key keymap [remap kmacro-start-macro-or-insert-counter] #'meow-start-kmacro-or-insert-counter)
+    (define-key keymap (kbd "i") 'meow-insert)    
     (define-key keymap [remap kmacro-end-or-call-macro] #'meow-end-or-call-kmacro)
     (define-key keymap [remap kmacro-end-macro] #'meow-end-kmacro)
     keymap)
@@ -54,13 +60,11 @@
   :keymap meow-visit-state-keymap
   :cursor meow-visit-cursor)
 
-;; (add-hook 'find-file-hook #'meow--enable-visit-state)
-(add-hook 'change-major-mode-hook #'meow--enable-visit-state)
+(defvar meow-visit-mode)
 
-(defun meow--enable-visit-state ()
-  "Enable the visit state when a buffer is opened."
-  (when (not (meow-visit-mode-p))
-    (meow-visit-mode 1)))
+(defun meow-visit-mode-p ()
+  "Whether visit mode is enabled."
+  (bound-and-true-p meow-visit-mode))
 
 (defun meow-visit-define-key (&rest keybinds)
   (apply #'meow-define-keys 'visit keybinds))
@@ -70,11 +74,7 @@
   (interactive)
   (cond
    ((meow-keypad-mode-p)
-    (meow--exit-keypad-state))
-   ((and (meow-visit-mode-p)
-         (eq meow--beacon-defining-kbd-macro 'quick))
-    (setq meow--beacon-defining-kbd-macro nil)
-    (meow-beacon-visit-exit))
+    (meow--exit-keypad-state))   
    ((meow-visit-mode-p)
     (when overwrite-mode
       (overwrite-mode -1))

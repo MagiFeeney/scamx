@@ -35,6 +35,13 @@
 
 ;;; Code:
 
+(require 'meow-util)
+
+(declare-function meow-end-kmacro "meow-command")
+(declare-function meow-end-or-call-kmacro "meow-command")
+(declare-function meow-define-state "meow-helpers")
+(declare-function meow-define-keys "meow-helpers")
+
 (use-package isearch
   :custom
   (isearch-repeat-on-direction-change t)
@@ -55,9 +62,7 @@
 
 (defvar meow-isearch-state-keymap
   (let ((keymap (make-keymap)))
-    (suppress-keymap keymap t)
-    (define-key keymap [remap kmacro-start-macro] #'meow-start-kmacro)
-    (define-key keymap [remap kmacro-start-macro-or-insert-counter] #'meow-start-kmacro-or-insert-counter)
+    (suppress-keymap keymap t)    
     (define-key keymap [remap kmacro-end-or-call-macro] #'meow-end-or-call-kmacro)
     (define-key keymap [remap kmacro-end-macro] #'meow-end-kmacro)
     keymap)
@@ -77,6 +82,12 @@
   :keymap meow-isearch-state-keymap
   :cursor meow-isearch-cursor)
 
+(defvar meow-isearch-mode)
+
+(defun meow-isearch-mode-p ()
+  "Whether isearch mode is enabled."
+  (bound-and-true-p meow-isearch-mode))
+
 (defun meow-isearch-define-key (&rest keybinds)
   (apply #'meow-define-keys 'isearch keybinds))
 
@@ -85,11 +96,7 @@
   (interactive)
   (cond
    ((meow-keypad-mode-p)
-    (meow--exit-keypad-state))
-   ((and (meow-isearch-mode-p)
-         (eq meow--beacon-defining-kbd-macro 'quick))
-    (setq meow--beacon-defining-kbd-macro nil)
-    (meow-beacon-isearch-exit))
+    (meow--exit-keypad-state))   
    ((meow-isearch-mode-p)
     (when overwrite-mode
       (overwrite-mode -1))

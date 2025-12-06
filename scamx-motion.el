@@ -30,16 +30,17 @@
 
 ;;; Code:
 
+(require 'meow-util)
+
+(declare-function meow-cancel-selection "meow-command")
+(declare-function meow-motion-state-keymap "meow-keymap")
+
 (defun meow-motion-exit ()
   "Switch to NORMAL state."
   (interactive)
   (cond
    ((meow-keypad-mode-p)
-    (meow--exit-keypad-state))
-   ((and (meow-motion-mode-p)
-         (eq meow--beacon-defining-kbd-macro 'quick))
-    (setq meow--beacon-defining-kbd-macro nil)
-    (meow-beacon-motion-exit))
+    (meow--exit-keypad-state))   
    ((meow-motion-mode-p)
     (when overwrite-mode
       (overwrite-mode -1))

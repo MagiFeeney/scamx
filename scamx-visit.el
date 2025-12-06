@@ -66,13 +66,6 @@
   "Whether visit mode is enabled."
   (bound-and-true-p meow-visit-mode))
 
-(add-hook 'change-major-mode-hook #'meow--enable-visit-state)
-
-(defun meow--enable-visit-state ()
-  "Enable the visit state when a buffer is opened."
-  (when (not (meow-visit-mode-p))
-    (meow-visit-mode 1)))
-
 (defun meow-visit-define-key (&rest keybinds)
   (apply #'meow-define-keys 'visit keybinds))
 

@@ -1,6 +1,6 @@
 # Scamx: Emacs, Rewired
 
-**Scamx** is a modal editing framework designed for Emacs. By adopting a modular, multi-layered architecture, it integrates seamlessly with existing Emacs keybindings while minimizing reliance on modifier keys. Rather than redefining core functionality, Scamx focuses on providing ergonomic and consistent access to the powerful commands already available within Emacs.
+Scamx is a modal editing framework designed for Emacs. By adopting a modular, multi-layered architecture, it integrates seamlessly with existing Emacs keybindings while minimizing reliance on modifier keys. Rather than redefining core functionality, Scamx focuses on providing ergonomic and consistent access to the powerful commands already available within Emacs.
 
 ## Installation
 
@@ -12,7 +12,7 @@
   (electric-pair-mode))
 ```
 
-**Note:** For the full setup, please reference `scamx-anchor.el`.
+> **Note:** For the full setup, please reference `scamx-anchor.el`.
 
 ## Core Concepts & Modes
 
@@ -28,7 +28,7 @@ Scamx maximizes ergonomics through a multi-layered modal architecture, reusing a
 #### Local Control
 Scamx also provides an additional layer, **Motion Mode**, which can be customized for specific major modes (e.g. `Org mode`). By default, Motion Mode starts as a blank state unless the target mode already defines a default keymap, such as in `Dired` or `Magit`. Users can freely bind any function to any key according to their workflow.
 
-**Tip:** You can seamlessly switch between these native modes and scamx. Enter Normal mode with `g` and revert back to Emacs' default state with `` ` ``.
+> **Tip:** You can seamlessly switch between these native modes and scamx. Enter Normal mode with `g` and revert back to Emacs' default state with `` ` ``.
 
 ---
 
@@ -120,7 +120,10 @@ Triggered via `?` from Normal mode. Exit with `q`.
 
 ## Special Contexts & Features
 
-* **Minibuffer:** Defaults to Insert mode (`i`). Type `gg` to leave insert mode, use `n` / `p` to select candidates, and `<RET>` to confirm. Use `g` to abort. *Note: Visit mode (`v`) works here, allowing back-and-forth movement between the minibuffer and other buffers. You can also use `c` (Convert mode) `n`/`p` to loop through history.*
+* **Minibuffer:** Defaults to Insert mode (`i`). Type `gg` to leave insert mode, use `n` / `p` to select candidates, and `<RET>` to confirm. Use `g` to abort.
+
+> **Note:** Visit mode (`v`) works here, allowing back-and-forth movement between the minibuffer and other buffers. You can also use `c` (Convert mode) `n`/`p` to loop through history.
+
 * **Isearch (`s`):** Prompts in the minibuffer. Hit `<RET>` to finish input, then use `n` / `p` to loop through buffer candidates. Press `s` again to search a new string (or `e` to modify the last string), or `g` to exit.
 * **Mark Management:** Hit `SPC` twice to set a mark, and `x SPC` to return to it. You can invoke Convert mode over a mark, execute commands, and return to Normal mode while retaining the mark.
 * **Negative Arguments:** Combine `-` with directional commands (e.g., `- t` to select backward to a char, `- k` to kill backward a line).

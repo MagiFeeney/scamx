@@ -38,10 +38,43 @@
 
 (defun meow-setup ()
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
-  (meow-motion-overwrite-define-key	; minimal overwrite to not interfere original commands
-   '("g" . meow-motion-exit)
-   '("n" . next-line)
-   '("p" . previous-line))
+  (scamx-motion-define-key
+   '("g" . meow-motion-exit)		; applied globally
+
+   (org-mode
+    '("=" . org-mark-element)
+    '("n" . org-next-visible-heading)
+    '("p" . org-previous-visible-heading)
+    '("RET" . org-meta-return)
+    '("t" . org-insert-todo-heading)
+    '("h" . org-insert-heading-respect-content)
+    '("j" . org-insert-todo-heading-respect-content)
+    '("f" . org-shiftright)
+    '("b" . org-shiftleft)
+    '("u" . org-shiftup)
+    '("d" . org-shiftdown)
+    '("l" . org-insert-link)
+    '("i" . org-toggle-inline-images)
+    '(">" . org-goto-calendar)
+    '("e" . org-set-effort)
+    '("C-i" . org-clock-in)
+    '("C-o" . org-clock-out))
+
+   (LaTeX-mode
+    '("h" . LaTeX-mark-environment)
+    '("=" . LaTeX-mark-section)
+    '("n" . LaTeX-find-matching-end)
+    '("p" . LaTeX-find-matching-begin)
+    '("e" . LaTeX-environment)
+    '("s" . LaTeX-section)
+    '("[" . reftex-citation)
+    '("]" . LaTeX-close-environment)
+    '("(" . reftex-label)
+    '(")" . reftex-reference)
+    '("f" . TeX-font))
+
+   ;; add yours here
+   )
   (meow-convert-define-key
    '("g" . meow-convert-exit)
    '("x" . scamx-X-keymap)
@@ -115,7 +148,6 @@
    '("j" . move-to-window-line-top-bottom)
    '("(" . tear-off-window)
    '(")" . delete-frame))
-   ;; '("t" . ace-select-window)
   (meow-isearch-define-key
    '("g" . meow-isearch-exit)
    '("n" . isearch-repeat-forward)

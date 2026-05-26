@@ -1,4 +1,4 @@
-;;; scamx.el --- A Minimalist Modal Editing Mechanism for Emacs  -*- lexical-binding: t; -*-
+;;; scamx.el --- Emacs, Rewired -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2025  Magi Feeney
 

@@ -1,223 +1,174 @@
-# Scamx: A Minimalist Modal Editing Mechanism for Emacs
+# Scamx: Emacs, Rewired
 
-Scamx is an experimental modal editing mechanism designed for Emacs. It introduces a modularized, multi-layered approach that integrates seamlessly with default Emacs keybindings, avoiding modifier keys and focusing solely on essential commands. Scamx is crafted to deliver a streamlined and functional modal editing experience within the Emacs environment. As mathematical principles dictate, only mapping matters and those powerful functions are just out there.
+**Scamx** is a modal editing framework designed for Emacs. By adopting a modular, multi-layered architecture, it integrates seamlessly with existing Emacs keybindings while minimizing reliance on modifier keys. Rather than redefining core functionality, Scamx focuses on providing ergonomic and consistent access to the powerful commands already available within Emacs.
 
-## How to Use
+## Installation
 
-``` elisp
+```elisp
 (use-package scamx
   :ensure t
   :vc (:url "https://github.com/MagiFeeney/scamx/")
   :config
-  (electric-pair-mode)
+  (electric-pair-mode))
+```
+
+**Note:** For the full setup, please reference `scamx-anchor.el`.
+
+## Core Concepts & Modes
+
+Scamx maximizes ergonomics through a multi-layered modal architecture, reusing a compact set of keys across four global core modes while allowing seamless, mode-specific customization.
+
+#### The Layers
+
+* **Normal (`g` to return):** The base mode for basic navigation and invoking other modes.
+* **Convert Mode (`c` prefix):** Bolder, structural editing (words, paragraphs, sexps).
+* **Visit Mode (`v` prefix):** Navigates, views, and manages buffers and windows.
+* **X Mode (`x` prefix):** Sequence commands for system, buffer, and macro management.
+
+#### Local Control
+Scamx also provides an additional layer, **Motion Mode**, which can be customized for specific major modes (e.g. `Org mode`). By default, Motion Mode starts as a blank state unless the target mode already defines a default keymap, such as in `Dired` or `Magit`. Users can freely bind any function to any key according to their workflow.
+
+**Tip:** You can seamlessly switch between these native modes and scamx. Enter Normal mode with `g` and revert back to Emacs' default state with `` ` ``.
+
+---
+
+## Keybindings
+
+### Normal Mode
+
+Base navigation and editing. Use `` ` `` for motion mode, `?` for help, and `g` to cancel/exit.
+
+| Key | Action | Key | Action |
+| --- | --- | --- | --- |
+| `/` | `M-x` | `w` / `y` | Copy / Yank |
+| `x`/`c`/`v` | Enter X / Convert / Visit mode | `u` / `r` | Undo / Redo |
+| `i` | Insert (`gg` to exit) | `k` | Kill line at point/region |
+| `a` / `e` | Move to beginning / end of line | `t` | Select to char |
+| `d` / `h` | Delete forward / backward (or region) | `z` / `Z` | Zap up to char / Zap to char |
+| `o` / `O` | Open line below / above | `q` / `Q` | Quit buffer / Goto line |
+| `n` / `p` | Next / Previous line | `l` | Recenter top/bottom |
+| `f` / `b` | Forward / Backward char | `\` | Delete horizontal space |
+| `j` / `m` | Newline (`RET`) / Back to indentation | `!` / `$` | Shell command / Ispell word |
+| `s` | Isearch minor mode | `%` | Query replace |
+| `=` | Mark word | `;` / `'` | Comment line / region |
+| `SPC` | Set mark command | `,` / `.` | Mark inside / outside pairs dwim |
+| `<backspace>` | Kill whole line | `-` | Negative argument prefix |
+
+#### Multiple Cursors (Normal Mode)
+
+| Key | Action | Key | Action |
+| --- | --- | --- | --- |
+| `[` / `]` | Mark previous / next like this | `<` / `>` | Skip to previous / next like this |
+| `:` | Mark all like this | `"` | Edit lines |
+| `@` | Mark all words like this | `#` | Mark all in region |
+
+### Convert Mode
+
+Triggered via `c` from Normal mode. Built for structural editing. Exit with `g`.
+
+| Key | Action | Key | Action |
+| --- | --- | --- | --- |
+| `/` | `M-x` | `a` / `j` / `e` | Backward kill sexp / Raise sexp / Kill sexp |
+| `n` / `p` | Forward / Backward paragraph | `(` / `)` | Backward / Forward list |
+| `f` / `b` | Forward / Backward word | `[` / `]` | Backward / Forward sexp |
+| `d` / `h` | Kill / Backward kill word (or region) | `{` / `}` | Backward / Forward up list |
+| `k` | Kill paragraph (or region) | `<` / `>` | Move beginning / end of defun |
+| `w` / `y` | Copy / Yank | `=` / `,` | Mark sexp / Mark defun |
+| `u` / `r` | Undo / Redo | `s` | Allow one Normal mode key to execute |
+
+### Visit Mode
+
+Triggered via `v` from Normal mode. Built for window and workspace management. Exit with `g`.
+
+| Key | Action | Key | Action |
+| --- | --- | --- | --- |
+| `l` / `c` / `s` | Last / Clone / Scratch buffer | `0` / `1` | Delete window / Delete other windows |
+| `n` / `p` | Next / Previous buffer | `=` / `w` | Balance windows / Swap window |
+| `f` / `b` | Other window / Prev window (any frame) | `m` / `M` | Minimize / Maximize window |
+| `d` / `D` | Scroll page down / Other page down | `|` / `_` | Split horizontally / vertically |
+| `u` / `U` | Scroll page up / Other page up | `+` / `-` | Enlarge / Shrink window horizontally |
+| `e` / `a` | Scroll line down / line up | `j` | Move cursor to top/center/bottom |
+| `r` | Revert buffer | `(` / `)` | Tear off window / Delete frame |
+
+### X Mode
+
+Triggered via `x` from Normal mode. (To view X mode commands dynamically, type `x ?`).
+
+| Key | Action | Key | Action |
+| --- | --- | --- | --- |
+| `f` / `s` / `c` | Open / Save / Save & Close Emacs | `b` / `l` / `k` | Switch / List / Kill buffer |
+| `z` | Minimize window | `x` | Exchange point and mark |
+| `h` | Select whole buffer | `SPC` | Pop to mark command |
+| `<tab>` | Indent region | `n` / `=` | Duplicate line / Adjust text scale |
+| `(` / `)` / `e` | Start / End / Call macro | `:` / `.` | Eval expression / last sexp |
+| `[` / `]` | Backward / Forward page | `\` / `~` | Copy file path to kill ring / Shutdown |
+| `j` | Dired jump | `o` / `m` | Org mode map / Set mode map |
+| `*` | Calculator | `ESC` | Repeat complex command |
+
+### Distilled Help Mode
+
+Triggered via `?` from Normal mode. Exit with `q`.
+
+| Key | Action | Key | Action |
+| --- | --- | --- | --- |
+| `k` / `c` | Describe key / Describe key briefly | `p` / `m` | Describe package / Describe mode |
+| `f` / `b` | Describe function / bindings | `t` / `d` | Tutorial / Debugging tutorial |
+| `s` / `v` | Search command / keyword | `i` / `r` | Info overview / Find manual |
+| `\` / `e` | Describe input method / View *Messages* | `C-q` / `?` | Quick toggle / Further options |
+
+---
+
+## Special Contexts & Features
+
+* **Minibuffer:** Defaults to Insert mode (`i`). Type `gg` to leave insert mode, use `n` / `p` to select candidates, and `<RET>` to confirm. Use `g` to abort. *Note: Visit mode (`v`) works here, allowing back-and-forth movement between the minibuffer and other buffers. You can also use `c` (Convert mode) `n`/`p` to loop through history.*
+* **Isearch (`s`):** Prompts in the minibuffer. Hit `<RET>` to finish input, then use `n` / `p` to loop through buffer candidates. Press `s` again to search a new string (or `e` to modify the last string), or `g` to exit.
+* **Mark Management:** Hit `SPC` twice to set a mark, and `x SPC` to return to it. You can invoke Convert mode over a mark, execute commands, and return to Normal mode while retaining the mark.
+* **Negative Arguments:** Combine `-` with directional commands (e.g., `- t` to select backward to a char, `- k` to kill backward a line).
+
+## Motion Mode in Practice
+Motion Mode complements the core layers by providing a private, mode-specific set of keybindings. It is particularly useful for modes that define specialized functions or keybinding overrides.
+
+For example, in `Org mode`, navigating between headings normally requires `C-c C-n` and `C-c C-p`. With Scamx, these commands can be rebound to simpler keys such as `n` and `p`, enabling a more streamlined workflow. The same approach can be extended to other frequently used commands. Users are free to customize both the bindings and the underlying functions according to their preferences.
+
+```elisp
+(scamx-motion-define-key
+  '("g" . meow-motion-exit)		; applied globally
+  (org-mode
+   '("=" . org-mark-element)
+   '("n" . org-next-visible-heading)
+   '("p" . org-previous-visible-heading)
+   '("RET" . org-meta-return)
+   '("t" . org-insert-todo-heading)
+   '("h" . org-insert-heading-respect-content)
+   '("j" . org-insert-todo-heading-respect-content)
+   '("f" . org-shiftright)
+   '("b" . org-shiftleft)
+   '("u" . org-shiftup)
+   '("d" . org-shiftdown)
+   '("l" . org-insert-link)
+   '("i" . org-toggle-inline-images)
+   '(">" . org-goto-calendar)
+   '("e" . org-set-effort)
+   '("C-i" . org-clock-in)
+   '("C-o" . org-clock-out))
+  ;; add more here
   )
 ```
 
-## Modes
-There are four major modes: normal, X, convert, and visit, where some minor modes, such as isearch, are wrapped into them. The normal mode serves as a base for basic navigation and modes invoking. And X mode is sequence commands with a prefix "x". Convert mode "c" is bolder compared to normal mode, and visit mode "v" navigates, views and manages buffer or window.
+---
 
-### X mode
-* `x f` open a file.
-* `x s` save buffer
-* `x c` save and close emacs
-* `x z` minimize window
-* `x h` select whole buffer
-* `x <tab>` indent region
-* `x (` start macro
-* `x )` end macro
-* `x e` call macro
-* `x [` backward page
-* `x ]` forward page
-* `x *` calculator
-* `x b` switch to buffer
-* `x l` list all buffers
-* `x k` kill buffer
-* `x j` dired jump
-* `x x` exchange point and mark
-* `x SPC` pop to mark command
-* `x n` duplicate line
-* `x ESC` repeat complex command
-* `x .` eval last sexp
-* `x :` eval expression
-* `x =` adjust text scale
-* `x \` copy current file path to kill ring
-* `x ~` shutdown the computer
-* `x o` org mode map (e.g. org mode or org-roam commands)
-* `x m` set mode map (e.g. eshell, python ...)
+## Issues & Roadmap
 
-### Normal mode
-* `/` M-x
-* `x` X mode
-* `c` convert mode
-* `v` visit mode
-* `` ` `` motion mode
-* `?` help mode
-* `g` cancel selection or exit minibuffer
-* `a` move beginning of line
-* `e` move end of line
-* `d` delete forward one char or delete region if selected
-* `h` delete backward one char or delete region if selected
-* `i` insert
-* `o` open below
-* `O` open above
-* `n` next line
-* `p` previous line
-* `f` forward char
-* `b` backward char
-* `j` newline (a.k.a \<return\>)
-* `m` back to indentation
-* `s` isearch forward minor mode
-* `k` kill line at point or kill region if selected
-* `w` copy
-* `y` yank
-* `u` undo
-* `r` redo
-* `t` select to char
-* `z` zap up to char
-* `Z` zap to char
-* `q` quit current buffer
-* `Q` goto line
-* `l` recenter top bottom
-* `\` delete horizontal space
-* `=` mark word
-* `SPC` set mark command
-* `!` shell command
-* `$` ispell word
-* `%` query replace
-* `;` comment line
-* `'` comment or uncomment region
-* `<backspace>` kill whole line
-* `,` mark inside pairs dwim
-* `.` mark outside pairs dwim ((), {}, [], \"\", '')
+### Issues
+* **Visit Mode:** May occasionally mishandle the `*Messages*` buffer on the first navigation attempt.
+* **Command Conflicts:** Occur in natively one-key oriented modes (e.g., `dired-mode`, `image-mode`, `magit-mode`). If `g` conflicts with a native `revert buffer`, use `r` in Visit mode instead.
 
-### Convert mode
-* `/` M-x
-* `g` back to normal mode
-* `n` forward paragraph
-* `p` backward paragraph
-* `f` forward word
-* `b` backward word
-* `d` kill word or delete region if selected
-* `h` backward kill word or delete region if selected
-* `k` kill paragraph or kill region if selected
-* `w` copy
-* `y` yank
-* `u` undo
-* `r` redo
-* `a` backward kill sexp
-* `j` raise sexp
-* `e` kill sexp
-* `(` backward list
-* `)` forward list
-* `[` backward sexp
-* `]` forward sexp
-* `{` backward up list
-* `}` forward up list
-* `<` move beginning of defun
-* `>` move end of defun
-* `=` mark sexp
-* `,` mark defun
-* `s` allow one key in Normal mode be executed
+### Development
 
-### Visit mode
-* `g` back to normal mode
-* `l` last buffer
-* `n` next buffer
-* `p` previous buffer
-* `f` other window
-* `b` previous window any frame
-* `c` clone buffer
-* `s` scratch buffer
-* `d` scroll page down
-* `D` scroll other page down
-* `u` scroll page up
-* `U` scroll other page up
-* `e` scroll line down
-* `a` scroll line up
-* `r` revert buffer
-* `0` delete window
-* `1` delete other windows
-* `=` balance windows
-* `m` minimize window
-* `M` maximize window
-* `|` split window horizontally
-* `_` split window vertically
-* `+` bold enlarge window horizontally
-* `-` bold shrink window horizontally
-* `w` swap window
-* `j` move cursor on top, center or bottom of the screen
-* `(` tear off window
-* `)` delete frame
-* If you have installed package `ace-window`, then you can further have:
-  * `t` select window
-  
-#### Multiple cursors in Normal mode
-* `[` mc/mark-previous-like-this
-* `]` mc/mark-next-like-this
-* `<` mc/skip-to-previous-like-this
-* `>` mc/skip-to-next-like-this
-* `:` mc/mark-all-like-this
-* `"` mc/edit-lines
-* `@` mc/mark-all-words-like-this
-* `#` mc/mark-all-in-region
-
-### Insert mode
-* `gg` back to normal mode
-
-### Help mode (Distilled)
-* `? k` describe key
-* `? c` describe key briefly
-* `? f` describe function
-* `? m` describe mode
-* `? \` describe input method
-* `? b` describe bindings
-* `? p` describe package
-* `? t` tutorial
-* `? d` debugging tutorial
-* `? e` view \*Messages\* buffer
-* `? r` find manual
-* `? i` info overview
-* `? s` search for command
-* `? v` search by keyword
-* `? C-q` quick toggle
-* `? ?` further options
-* `? q` quit help,
-
-To view commands from X mode, you can type `x` followed by `?`.
-
-### Minibuffer
-When enter into the minibuffer, it is by default at the insert mode. Once you have finished typing, you can call `gg` to leave insert mode, then use the regular navigation commands such as `n` or `p` to select the candidates. If you have finished selection, you can use `<return>` to abort the minibuffer, or just use `g` to leave if it needs to be stopped.
-
-If you want to loop through the history, you can use `n` or `p` in convert mode instead.
-
-Visit mode also applies to the minibuffer, which means you can move back-and-forth between buffers and the minibuffer.
-
-### Isearch minor mode
-Isearch forward is wrapped into an additional layer. Once it is invoked with the `s` key, it prompts at the minibuffer to enter the string to be searched. Hitting `return` then marks the finish of the input process. After that, you can use the familiar navigation commands `n` or `p` to loop through all candidate in the buffer. When `s` is pressed again, you can enter a new string to search. Otherwise, you can go back to the normal state with `g`. You can also simply leave the input string blank followed by the `return`. With `g`, you can directly leave.
-
-Please check the full set up in `scamx-anchor.el`.
-
-### Mark
-* You can hit `SPC` twice to set mark, and then use `x SPC` to return back to the position.
-* The convert mode can be invoked on top of the current mark, use whatever commands needed, then revert back to normal mode while keeping the mark.
-
-### Negative argument
-* `-` can be combined with directional commands, i.e. `- t` select backward to a char, `- k` kill backward a line.
-
-## Issues and Plans
-- In visit mode, it may occasionally not handle the buffer `*Messages*` properly when navigating previous or next buffer at first attempt.
-- Command conflicts would be observed in one-key oriented mode i.e. dired-mode, image-mode and magit-mode etc.
-
-------
-
-Now you can switch between those modes and scamx, by entering into the normal mode with `g` and reverting back with `` ` ``. When `g` conflicts with `revert buffer`, you can alternatively use `r` in visit mode.
-
-### TODO list
-#### First Stage
-- [X] Add more functions to convert mode (i.e. up-list, kill-sexp).
-- [X] Integrate with multiple-cursors.
-- [X] Merge meow of things command series into generalized zap command in a dwim style.
-- [X] Allow one command in the normal mode be excuted in the convert mode (like `ctrl-o` in vim).
-#### Second Stage
-- [ ] Motion mode as buffer-wise.
-- [ ] Improve selection of inside and outside of balanced expressions.
+* [x] Add more functions to convert mode (e.g., up-list, kill-sexp).
+* [x] Integrate with `multiple-cursors`.
+* [x] Merge `meow` *of things* command series into a generalized, DWIM-style zap command.
+* [x] Allow single Normal mode commands to execute inside Convert mode (similar to `C-o` in Vim).
+* [X] Implement Motion mode as buffer-wise.
+* [X] Improve selection mechanics for the inside/outside of balanced expressions.
+* [ ] Implement Scamx multiple cursors

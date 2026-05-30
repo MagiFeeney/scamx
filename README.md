@@ -68,7 +68,7 @@ Triggered via `c` from Normal mode. Built for structural editing. Exit with `g`.
 
 | Key | Action | Key | Action |
 | --- | --- | --- | --- |
-| `/` | `M-x` | `a` / `j` / `e` | Backward kill sexp / Raise sexp / Kill sexp |
+| `/` | `M-x` | `a` / `e` / `j` | Backward kill sexp / Kill sexp / Raise sexp |
 | `n` / `p` | Forward / Backward paragraph | `(` / `)` | Backward / Forward list |
 | `f` / `b` | Forward / Backward word | `[` / `]` | Backward / Forward sexp |
 | `d` / `h` | Kill / Backward kill word (or region) | `{` / `}` | Backward / Forward up list |
@@ -85,9 +85,9 @@ Triggered via `v` from Normal mode. Built for window and workspace management. E
 | `l` / `c` / `s` | Last / Clone / Scratch buffer | `0` / `1` | Delete window / Delete other windows |
 | `n` / `p` | Next / Previous buffer | `=` / `w` | Balance windows / Swap window |
 | `f` / `b` | Other window / Prev window (any frame) | `m` / `M` | Minimize / Maximize window |
-| `d` / `D` | Scroll page down / Other page down | `|` / `_` | Split horizontally / vertically |
+| `d` / `D` | Scroll page down / Other page down | `\|` / `_` | Split horizontally / vertically |
 | `u` / `U` | Scroll page up / Other page up | `+` / `-` | Enlarge / Shrink window horizontally |
-| `e` / `a` | Scroll line down / line up | `j` | Move cursor to top/center/bottom |
+| `a` / `e` | Scroll line up / line down | `j` | Move cursor to top/center/bottom |
 | `r` | Revert buffer | `(` / `)` | Tear off window / Delete frame |
 
 ### X Mode

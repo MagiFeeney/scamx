@@ -37,7 +37,7 @@
 (declare-function meow--minibuffer-setup "meow-util")
 (declare-function meow-update-cursor-functions-alist "meow-var")
 
-(defun my/meow-escape ()
+(defun scamx-escape ()
   "Quit INSERT or quit minibuffer or do nothing."
   (interactive)
   (cond
@@ -52,7 +52,7 @@
    (t
     (keyboard-quit))))
 
-(defun my/meow-setup-extra ()
+(defun scamx--setup-extra ()
   ;; Don't ignore cursor shape changes in minibuffer
   (delete (cons 'minibufferp 'meow--update-cursor-default)
 	  meow-update-cursor-functions-alist)
@@ -63,7 +63,7 @@
   (add-hook 'minibuffer-setup-hook 'meow-insert-mode))
 
 ;; Apply the patch after meow is activated
-(add-hook 'meow-global-mode-hook 'my/meow-setup-extra)
+(add-hook 'meow-global-mode-hook 'scamx--setup-extra)
 
 (provide 'scamx-minibuffer)
 ;;; scamx-minibuffer.el ends here

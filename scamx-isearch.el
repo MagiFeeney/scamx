@@ -50,25 +50,25 @@
   (custom-set-faces
    '(isearch ((t (:foreground "pink" :background "black" :weight bold :underline t))))
    '(lazy-highlight ((t (:foreground "#67B7A4" :background "#0d0d0d")))))
-  
+
   ;; exit
   (defun isearch-exit-at-once ()
     "Exit search normally without nonincremental search if no input is given."
     (interactive)
     (isearch-done)
     (isearch-clean-overlays))
-  
+
   (define-key isearch-mode-map (kbd "<return>") 'isearch-exit-at-once))
 
-(defvar meow-isearch-state-keymap
+(defvar scamx-isearch-state-keymap
   (let ((keymap (make-keymap)))
-    (suppress-keymap keymap t)    
+    (suppress-keymap keymap t)
     (define-key keymap [remap kmacro-end-or-call-macro] #'meow-end-or-call-kmacro)
     (define-key keymap [remap kmacro-end-macro] #'meow-end-kmacro)
     keymap)
-  "Keymap for Meow isearch state.")
+  "Keymap for Scamx isearch state.")
 
-(defface meow-isearch-cursor
+(defface scamx-isearch-cursor
   '((((class color) (background dark))
      (:inherit cursor))
     (((class color) (background light))
@@ -79,31 +79,31 @@
 (meow-define-state isearch
   "Meow ISEARCH state minor mode."
   :lighter " [S]"
-  :keymap meow-isearch-state-keymap
-  :cursor meow-isearch-cursor)
+  :keymap scamx-isearch-state-keymap
+  :cursor scamx-isearch-cursor)
 
-(defvar meow-isearch-mode)
+(defalias 'scamx-isearch-mode-p 'meow-isearch-mode-p)
 
-(defun meow-isearch-mode-p ()
-  "Whether isearch mode is enabled."
-  (bound-and-true-p meow-isearch-mode))
-
-(defun meow-isearch-define-key (&rest keybinds)
+(defun scamx-isearch-define-key (&rest keybinds)
   (apply #'meow-define-keys 'isearch keybinds))
 
-(defun meow-isearch-exit ()
+(defun scamx-isearch-exit ()
   "Switch to NORMAL state."
   (interactive)
   (cond
    ((meow-keypad-mode-p)
-    (meow--exit-keypad-state))   
-   ((meow-isearch-mode-p)
+    (meow--exit-keypad-state))
+   ((scamx-isearch-mode-p)
     (when overwrite-mode
       (overwrite-mode -1))
+    (when (get-buffer "*Occur*")
+      (other-window 1)
+      (delete-window)
+      (kill-buffer "*Occur*"))
     (isearch-done)
     (meow--switch-state 'normal))))
 
-(defun meow-isearch ()
+(defun scamx-isearch ()
   "Move to the start of selection, switch to SEARCH state."
   (interactive)
   (if meow--temp-normal
@@ -111,7 +111,7 @@
         (message "Quit temporary normal mode")
         (meow--switch-state 'motion))
     (meow--switch-state 'isearch)
-    (isearch-forward)))
+    (scamx-isearch-forward)))
 
 (provide 'scamx-isearch)
 ;;; scamx-isearch.el ends here

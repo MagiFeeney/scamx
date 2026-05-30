@@ -37,16 +37,16 @@
 (declare-function meow-define-keys "meow-helpers")
 (declare-function meow--cancel-selection "meow-command")
 
-(defvar meow-visit-state-keymap
+(defvar scamx-visit-state-keymap
   (let ((keymap (make-keymap)))
     (suppress-keymap keymap t)
-    (define-key keymap (kbd "i") 'meow-insert)    
+    (define-key keymap (kbd "i") 'scamx-insert)
     (define-key keymap [remap kmacro-end-or-call-macro] #'meow-end-or-call-kmacro)
     (define-key keymap [remap kmacro-end-macro] #'meow-end-kmacro)
     keymap)
-  "Keymap for Meow visit state.")
+  "Keymap for Scamx visit state.")
 
-(defface meow-visit-cursor
+(defface scamx-visit-cursor
   '((((class color) (background dark))
      (:inherit cursor))
     (((class color) (background light))
@@ -57,38 +57,34 @@
 (meow-define-state visit
   "Meow VISIT state minor mode."
   :lighter " [V]"
-  :keymap meow-visit-state-keymap
-  :cursor meow-visit-cursor)
+  :keymap scamx-visit-state-keymap
+  :cursor scamx-visit-cursor)
 
-(defvar meow-visit-mode)
+(defalias 'scamx-visit-mode-p 'meow-visit-mode-p)
 
-(defun meow-visit-mode-p ()
-  "Whether visit mode is enabled."
-  (bound-and-true-p meow-visit-mode))
-
-(defun meow-visit-define-key (&rest keybinds)
+(defun scamx-visit-define-key (&rest keybinds)
   (apply #'meow-define-keys 'visit keybinds))
 
-(defun meow-visit-exit ()
+(defun scamx-visit-exit ()
   "Switch to NORMAL state."
   (interactive)
   (cond
    ((meow-keypad-mode-p)
-    (meow--exit-keypad-state))   
-   ((meow-visit-mode-p)
+    (meow--exit-keypad-state))
+   ((scamx-visit-mode-p)
     (when overwrite-mode
       (overwrite-mode -1))
     (meow--switch-state 'normal))))
 
-(defun meow-visit-exit-all ()
+(defun scamx-visit-exit-all ()
   "Exit the visit state for all currently open buffers."
   (interactive)
   (dolist (buffer (buffer-list))
     (with-current-buffer buffer
-      (when (meow-visit-mode-p)
-        (meow-visit-exit)))))
+      (when (scamx-visit-mode-p)
+        (scamx-visit-exit)))))
 
-(defun meow--visit ()
+(defun scamx-visit ()
   "Move to the start of selection, switch to VISIT state."
   (interactive)
   (if meow--temp-normal
@@ -99,12 +95,12 @@
     (meow--cancel-selection)
     (meow--switch-state 'visit)))
 
-(defun meow-visit-all ()
+(defun scamx-visit-all ()
   "Apply the custom 'visit' mode to all buffers."
   (interactive)
   (dolist (buffer (buffer-list))
     (with-current-buffer buffer
-      (meow--visit))))
+      (scamx-visit))))
 
 (provide 'scamx-visit)
 ;;; scamx-visit.el ends here

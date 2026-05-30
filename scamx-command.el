@@ -68,7 +68,7 @@
   (when (meow--allow-modify-p)
     (if (use-region-p)
         (kill-region (region-beginning) (region-end))
-      (if arg 
+      (if arg
           (kill-line (prefix-numeric-value arg))
         (kill-line)))))
 
@@ -79,7 +79,7 @@
   (when (meow--allow-modify-p)
     (if (use-region-p)
         (kill-region (region-beginning) (region-end))
-      (if arg 
+      (if arg
           (kill-sentence (prefix-numeric-value arg))
         (kill-sentence)))))
 
@@ -90,7 +90,7 @@
   (when (meow--allow-modify-p)
     (if (use-region-p)
         (kill-region (region-beginning) (region-end))
-      (if arg 
+      (if arg
           (kill-paragraph arg)
         (kill-paragraph 1)))))
 
@@ -171,7 +171,7 @@ the deleted text (similar to `kill-region`)."
 ;;;###autoload
 (defun scamx-suspend (&optional arg)
   (interactive "P")
-  (when (meow-convert-mode-p)
+  (when (scamx-convert-mode-p)
     (meow--switch-state 'normal)
     (let ((key (read-key-sequence "Suspend to execute a command in Normal mode: ")))
       (if (not (equal (key-binding key) 'undefined))
@@ -195,6 +195,17 @@ the deleted text (similar to `kill-region`)."
   (interactive "p")
   (backward-up-list arg (point) (point))
   (mark-sexp))
+
+;;;###autoload
+(defun scamx-isearch-forward ()
+  "Apply `isearch` to the active region if any, otherwise fall back to the default."
+  (interactive)
+  (if (use-region-p)
+      (let ((region-str (buffer-substring-no-properties (region-beginning) (region-end))))
+        (deactivate-mark)
+        (isearch-mode t nil nil nil)
+        (isearch-yank-string region-str))
+    (isearch-forward)))
 
 (provide 'scamx-command)
 ;;; scamx-command.el ends here

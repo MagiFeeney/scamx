@@ -31,7 +31,7 @@
 
 (declare-function meow--switch-state "meow-util")
 
-(defun meow-insert ()			; overwrite the default meow-insert
+(defun scamx-insert ()
   "Move to the start of selection, switch to INSERT state."
   (interactive)
   (if meow--temp-normal

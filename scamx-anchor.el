@@ -39,7 +39,7 @@
 (defun meow-setup ()
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
   (scamx-motion-define-key
-   '("g" . meow-motion-exit)		; applied globally
+   '("g" . scamx-motion-exit)		; applied globally
 
    (org-mode
     '("=" . org-mark-element)
@@ -75,8 +75,8 @@
 
    ;; add yours here
    )
-  (meow-convert-define-key
-   '("g" . meow-convert-exit)
+  (scamx-convert-define-key
+   '("g" . scamx-convert-exit)
    '("x" . scamx-X-keymap)
    '("?" . scamx-help-keymap)
    '("1" . meow-digit-argument)
@@ -117,8 +117,8 @@
    '("s" . scamx-suspend)
    '("SPC" . set-mark-command)
    '("/" . execute-extended-command))
-  (meow-visit-define-key
-   '("g" . meow-visit-exit-all)
+  (scamx-visit-define-key
+   '("g" . scamx-visit-exit-all)
    '("x" . scamx-X-keymap)
    '("?" . scamx-help-keymap)
    '("l" . meow-last-buffer)
@@ -148,8 +148,8 @@
    '("j" . move-to-window-line-top-bottom)
    '("(" . tear-off-window)
    '(")" . delete-frame))
-  (meow-isearch-define-key
-   '("g" . meow-isearch-exit)
+  (scamx-isearch-define-key
+   '("g" . scamx-isearch-exit)
    '("n" . isearch-repeat-forward)
    '("p" . isearch-repeat-backward)
    '("s" . isearch-forward)
@@ -169,10 +169,10 @@
   (meow-normal-define-key
    '("x" . scamx-X-keymap)
    '("?" . scamx-help-keymap)
-   '("c" . meow-convert)
-   '("v" . meow-visit-all)
-   '("s" . meow-isearch)
-   '("`" . meow-motion)
+   '("c" . scamx-convert)
+   '("v" . scamx-visit-all)
+   '("s" . scamx-isearch)
+   '("`" . scamx-motion)
    '("1" . meow-digit-argument)
    '("2" . meow-digit-argument)
    '("3" . meow-digit-argument)
@@ -194,9 +194,9 @@
    '("e" . move-end-of-line)
    '("d" . scamx-delete-char)
    '("h" . scamx-backward-delete-char)
-   '("g" . my/meow-escape)
+   '("g" . scamx-escape)
    '("b" . backward-char)
-   '("i" . meow-insert)
+   '("i" . scamx-insert)
    '("o" . meow-open-below)
    '("O" . meow-open-above)
    '("n" . next-line)

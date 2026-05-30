@@ -35,18 +35,20 @@
 (declare-function meow-cancel-selection "meow-command")
 (declare-function meow-motion-state-keymap "meow-keymap")
 
-(defun meow-motion-exit ()
+(defalias 'scamx-motion-mode-p 'meow-motion-mode-p)
+
+(defun scamx-motion-exit ()
   "Switch to NORMAL state."
   (interactive)
   (cond
    ((meow-keypad-mode-p)
     (meow--exit-keypad-state))
-   ((meow-motion-mode-p)
+   ((scamx-motion-mode-p)
     (when overwrite-mode
       (overwrite-mode -1))
     (meow--switch-state 'normal))))
 
-(defun meow-motion ()
+(defun scamx-motion ()
   "Move to the start of selection, switch to MOTION state."
   (interactive)
   (if meow--temp-normal
@@ -87,14 +89,14 @@ the macro from wiping the base keybindings (useful for e.g. dired/magit)."
                          `((dolist (char (number-sequence ?\s ?~))
                              (define-key ,map-sym (vector char)
                                '(menu-item "" undefined
-                                           :filter (lambda (c) (when (meow-motion-mode-p) c)))))))
+                                           :filter (lambda (c) (when (scamx-motion-mode-p) c)))))))
 
                      ;; Apply overrides
                      ,@(mapcar (lambda (raw-b)
                                  (let ((b (if (eq (car-safe raw-b) 'quote) (cadr raw-b) raw-b)))
                                    `(define-key ,map-sym (kbd ,(car b))
                                       '(menu-item "" ,(cdr b)
-                                                  :filter (lambda (c) (when (meow-motion-mode-p) c))))))
+                                                  :filter (lambda (c) (when (scamx-motion-mode-p) c))))))
                                raw-bindings))
                   forms)
             (push `(add-hook ',hook-sym ',func-sym) forms)))
@@ -104,7 +106,7 @@ the macro from wiping the base keybindings (useful for e.g. dired/magit)."
     `(progn ,@(nreverse forms))))
 
 (defun scamx-motion-overwrite-define-key (keymap &rest bindings)
-  "Bind keys in KEYMAP that only activate when `meow-motion-mode' is active.
+  "Bind keys in KEYMAP that only activate when `scamx-motion-mode' is active.
 BINDINGS is a list of (KEY . COMMAND) cons cells."
   (dolist (binding bindings)
     (let ((key (car binding))
@@ -114,7 +116,7 @@ BINDINGS is a list of (KEY . COMMAND) cons cells."
                     :filter ,(lambda (c)
                                ;; Only return the command if we are in motion state.
                                ;; Otherwise, return nil so Emacs ignores this binding.
-                               (when (meow-motion-mode-p) c)))))))
+                               (when (scamx-motion-mode-p) c)))))))
 
 (provide 'scamx-motion)
 ;;; scamx-motion.el ends here

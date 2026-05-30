@@ -42,6 +42,8 @@
 (declare-function meow-define-state "meow-helpers")
 (declare-function meow-define-keys "meow-helpers")
 
+(declare-function scamx-isearch-forward "scamx-command")
+
 (use-package isearch
   :custom
   (isearch-repeat-on-direction-change t)

@@ -207,5 +207,10 @@ the deleted text (similar to `kill-region`)."
         (isearch-yank-string region-str))
     (isearch-forward)))
 
+;;;###autoload
+(defun scamx-last-buffer ()
+  (interactive)
+  (switch-to-buffer nil))
+
 (provide 'scamx-command)
 ;;; scamx-command.el ends here
